@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HanJobs — 미국 한인 전용 AI 채용 플랫폼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:       #f7f3ed;
+  --bg2:      #efe9e0;
+  --black:    #1a1410;
+  --brown:    #3d2b1a;
+  --red:      #c0392b;
+  --red2:     #9b2f22;
+  --gold:     #b5860d;
+  --gold2:    #8a6509;
+  --gray:     #7a6a5a;
+  --lgray:    #a89880;
+  --white:    #ffffff;
+  --card:     #ffffff;
+  --border:   rgba(181,134,13,0.2);
+  --shadow:   0 4px 32px rgba(26,20,16,0.10);
+}
+
+body {
+  background: var(--bg);
+  color: var(--black);
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── TOPBAR ─── */
+.topbar {
+  background: var(--red);
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 0.78rem;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.06em;
+}
+.topbar strong { color: #ffd87a; }
+
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(247,243,237,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px;
+  height: 64px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--black);
+  letter-spacing: -0.01em;
+}
+.logo em { color: var(--red); font-style: normal; }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gray);
+  letter-spacing: 0.04em;
+}
+.nav-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--red); }
+
+.nav-btn {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 9px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-btn:hover { background: var(--red2); transform: translateY(-1px); }
+
+/* ─── HERO ─── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 100px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 48px 64px;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(192,57,43,0.08);
+  border: 1px solid rgba(192,57,43,0.2);
+  border-radius: 100px;
+  padding: 5px 14px 5px 8px;
+  font-size: 0.72rem;
+  color: var(--red);
+  font-weight: 600;
+  margin-bottom: 24px;
+  letter-spacing: 0.04em;
+}
+.hero-tag .dot {
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: blink 1.8s infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; } 50% { opacity:0.3; }
+}
+
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.08;
+  color: var(--black);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.hero-h1 .accent { color: var(--red); }
+.hero-h1 .italic { font-style: italic; color: var(--gold); display: block; }
+
+.hero-ko {
+  font-size: 1.05rem;
+  color: var(--gray);
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.8;
+  max-width: 460px;
+  margin-bottom: 36px;
+  font-weight: 300;
+}
+.hero-desc b { color: var(--black); font-weight: 600; }
+
+/* inline email form */
+.hero-form {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--black);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--black);
+}
+.hero-input {
+  flex: 1;
+  border: none;
+  background: #fff;
+  padding: 13px 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  color: var(--black);
+}
+.hero-input::placeholder { color: var(--lgray); }
+.hero-submit {
+  background: var(--black);
+  color: #fff;
+  border: none;
+  padding: 13px 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.hero-submit:hover { background: var(--red); }
+
+.hero-fine {
+  font-size: 0.7rem;
+  color: var(--lgray);
+  font-family: 'IBM Plex Mono', monospace;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.hero-fine span::before { content: '✓ '; color: var(--gold); }
+
+/* hero right — visual */
+.hero-visual {
+  position: relative;
+}
+
+.phone-frame {
+  background: var(--black);
+  border-radius: 28px;
+  padding: 16px;
+  width: 280px;
+  margin: 0 auto;
+  box-shadow: 0 32px 80px rgba(26,20,16,0.25), 0 0 0 1px rgba(255,255,255,0.05);
+  position: relative;
+}
+.phone-screen {
+  background: #0f0f0f;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.phone-status {
+  background: #0f0f0f;
+  padding: 10px 16px 6px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+  color: rgba(255,255,255,0.5);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.phone-header {
+  background: var(--red);
+  padding: 12px 16px 10px;
+}
+.phone-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.ph-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+.ph-badge {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 0.52rem;
+  padding: 2px 7px;
+  border-radius: 100px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.phone-search {
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.65rem;
+}
+
+.pjob {
+  background: #1a1a1a;
+  margin: 1px 0;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.pjob-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+.pjob-title { font-size: 0.72rem; font-weight: 600; color: #f0ebe4; }
+.pjob-new {
+  font-size: 0.5rem;
+  background: rgba(192,57,43,0.3);
+  color: #e87a6f;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.pjob-ai {
+  font-size: 0.5rem;
+  background: rgba(181,134,13,0.2);
+  color: #d4a843;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.pjob-biz { font-size: 0.6rem; color: rgba(255,255,255,0.35); margin-bottom: 6px; }
+.pjob-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.pjob-tag {
+  font-size: 0.52rem;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.4);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.phone-ai {
+  background: rgba(181,134,13,0.12);
+  border-top: 1px solid rgba(181,134,13,0.2);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-dot {
+  width: 22px; height: 22px;
+  background: linear-gradient(135deg, var(--red), #e8a020);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+}
+.ai-msg { font-size: 0.6rem; color: rgba(255,255,255,0.5); line-height: 1.4; }
+.ai-msg b { color: #d4a843; }
+
+/* floating cards */
+.float-card {
+  position: absolute;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+.fc-left {
+  left: -70px;
+  top: 60px;
+}
+.fc-right {
+  right: -60px;
+  bottom: 80px;
+}
+.fc-icon { font-size: 1rem; margin-bottom: 3px; }
+.fc-label { font-size: 0.62rem; color: var(--gray); }
+.fc-val { font-weight: 700; color: var(--black); font-size: 0.75rem; }
+.fc-green { color: #2d8a4e; }
+.fc-gold { color: var(--gold); }
+
+/* ─── DIVIDER ─── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── LOGOS STRIP ─── */
+.logos {
+  padding: 28px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.logos-label {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--lgray);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.logos-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.logo-item {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--lgray);
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+/* ─── SECTION COMMONS ─── */
+section { padding: 88px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+.sec-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 60px;
+}
+
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 900;
+  line-height: 1.12;
+  color: var(--black);
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.sec-title em { color: var(--red); font-style: italic; }
+.sec-title .gold { color: var(--gold); font-style: italic; }
+
+.sec-sub {
+  font-size: 0.95rem;
+  color: var(--gray);
+  max-width: 520px;
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 52px;
+}
+
+/* ─── PROBLEM ─── */
+.problem { background: var(--bg2); }
+
+.prob-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.prob-list { margin-top: 8px; }
+.prob-item {
+  display: flex;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.prob-item:first-child { border-top: 1px solid var(--border); }
+.prob-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(192,57,43,0.15);
+  line-height: 1;
+  min-width: 36px;
+  margin-top: 2px;
+}
+.prob-text h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+.prob-text p {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.prob-right { padding-top: 56px; }
+.versus-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.versus-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+.vh-old {
+  background: #f5f0ea;
+  padding: 16px;
+  font-size: 0.72rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--lgray);
+  letter-spacing: 0.08em;
+  border-right: 1px solid var(--border);
+}
+.vh-new {
+  background: var(--red);
+  color: #fff;
+  padding: 16px;
+  font-size: 0.72rem;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.08em;
+}
+.versus-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #f0ebe4;
+}
+.versus-row:last-child { border-bottom: none; }
+.vr-old, .vr-new {
+  padding: 13px 16px;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+.vr-old {
+  color: var(--lgray);
+  border-right: 1px solid #f0ebe4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vr-old::before { content: '✗'; color: #ccc; font-size: 0.7rem; flex-shrink: 0; }
+.vr-new {
+  color: var(--black);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.vr-new::before { content: '✓'; color: var(--red); font-size: 0.7rem; flex-shrink: 0; }
+
+/* ─── HOW IT WORKS ─── */
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.step-box {
+  background: #fff;
+  padding: 36px 28px;
+  position: relative;
+  transition: background 0.25s;
+}
+.step-box:hover { background: #fdf9f4; }
+.step-box::after {
+  content: attr(data-num);
+  position: absolute;
+  bottom: 16px; right: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(192,57,43,0.06);
+  line-height: 1;
+}
+.step-emoji { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+.step-box h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 8px; color: var(--black); }
+.step-box p { font-size: 0.76rem; color: var(--gray); line-height: 1.65; font-weight: 300; }
+.step-tag {
+  display: inline-block;
+  background: rgba(192,57,43,0.08);
+  color: var(--red);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  padding: 3px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+
+/* ─── PRICING ─── */
+.pricing-section { background: var(--bg2); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.price-box {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 30px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.price-box:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(26,20,16,0.1); }
+.price-box.pop {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red), var(--shadow);
+}
+
+.pop-label {
+  position: absolute;
+  top: -13px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--red);
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  padding: 4px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.price-tier-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--black);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.price-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 6px; display: inline-block; }
+.price-per {
+  font-size: 0.72rem;
+  color: var(--lgray);
+  margin-bottom: 28px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.price-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+.price-features li {
+  font-size: 0.78rem;
+  color: var(--gray);
+  padding: 8px 0;
+  border-bottom: 1px solid #f5f0ea;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+.price-features li::before { content: '—'; color: var(--gold); font-size: 0.7rem; flex-shrink: 0; margin-top: 1px; }
+.price-features li.bold { color: var(--black); font-weight: 600; }
+
+.btn-plan {
+  width: 100%;
+  padding: 13px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1.5px solid;
+}
+.btn-plan-outline {
+  background: transparent;
+  border-color: var(--black);
+  color: var(--black);
+}
+.btn-plan-outline:hover { background: var(--black); color: #fff; }
+.btn-plan-fill {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.btn-plan-fill:hover { background: var(--red2); border-color: var(--red2); transform: translateY(-1px); }
+
+/* LTD BOX */
+.ltd-box {
+  background: var(--black);
+  border-radius: 12px;
+  padding: 36px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.ltd-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.ltd-box h3 em { color: var(--gold); font-style: italic; }
+.ltd-box p { font-size: 0.78rem; color: rgba(255,255,255,0.45); font-weight: 300; }
+
+.ltd-price-wrap { text-align: center; }
+.ltd-original { font-size: 0.72rem; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 2px; }
+.ltd-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.ltd-amount sup { font-size: 1.2rem; vertical-align: top; margin-top: 6px; display: inline-block; }
+.ltd-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btn-ltd {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 16px 32px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-ltd:hover { background: #d4a020; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(181,134,13,0.4); }
+
+.slots-bar {
+  text-align: center;
+  margin-top: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--lgray);
+  letter-spacing: 0.06em;
+}
+.slots-bar span { color: var(--red); font-weight: 600; }
+
+/* progress bar */
+.progress-wrap { max-width: 280px; margin: 8px auto 0; }
+.progress-bg {
+  background: var(--bg2);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--red);
+  border-radius: 2px;
+  width: 86%;
+  transition: width 1s ease;
+}
+
+/* ─── STATS ─── */
+.stats-strip {
+  background: var(--black);
+  padding: 60px 0;
+}
+.stats-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+.stat-item {
+  background: var(--black);
+  padding: 32px 24px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* ─── TESTIMONIALS ─── */
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.testi-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 24px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.testi-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.testi-card::before {
+  content: '"';
+  position: absolute;
+  top: 12px; right: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: rgba(192,57,43,0.08);
+  line-height: 1;
+}
+.testi-stars {
+  color: var(--gold);
+  font-size: 0.75rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.testi-text {
+  font-size: 0.82rem;
+  color: var(--gray);
+  line-height: 1.75;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.testi-ava {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.testi-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 2px;
+}
+.testi-role {
+  font-size: 0.65rem;
+  color: var(--lgray);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  background: var(--red);
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: 'HanJobs';
+  position: absolute;
+  font-family: 'Playfair Display', serif;
+  font-size: 20rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.final-cta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+  position: relative;
+}
+.final-cta h2 em { font-style: italic; color: #ffd87a; }
+
+.final-cta p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+  max-width: 460px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.7;
+  position: relative;
+}
+
+.final-form {
+  display: flex;
+  gap: 0;
+  max-width: 420px;
+  margin: 0 auto 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.2s;
+}
+.final-form:focus-within { border-color: rgba(255,255,255,0.7); }
+
+.final-input {
+  flex: 1;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  padding: 14px 18px;
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+}
+.final-input::placeholder { color: rgba(255,255,255,0.4); }
+.final-btn {
+  background: #fff;
+  color: var(--red);
+  border: none;
+  padding: 14px 22px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  position: relative;
+}
+.final-btn:hover { background: #ffd87a; }
+
+.final-fine {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.4);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.06em;
+  position: relative;
+}
+
+.success-toast {
+  display: none;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 14px 24px;
+  color: #fff;
+  font-size: 0.85rem;
+  max-width: 360px;
+  margin: 16px auto 0;
+  position: relative;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--black);
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 100%;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+}
+.footer-logo em { color: var(--red); font-style: normal; }
+
+footer p {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.25);
+  font-family: 'IBM Plex Mono', monospace;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.06em;
+}
+footer ul li { cursor: pointer; transition: color 0.2s; }
+footer ul li:hover { color: var(--gold); }
+
+/* ─── SCROLL REVEAL ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── MOBILE ─── */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 48px 24px 60px;
+    gap: 40px;
+    min-height: auto;
+  }
+  .hero-visual { display: none; }
+
+  section { padding: 60px 0; }
+  .container { padding: 0 24px; }
+
+  .prob-layout { grid-template-columns: 1fr; gap: 36px; }
+  .prob-right { padding-top: 0; }
+
+  .steps-row { grid-template-columns: 1fr 1fr; }
+
+  .pricing-grid { grid-template-columns: 1fr; }
+  .price-box.pop { order: -1; }
+
+  .ltd-box { flex-direction: column; text-align: center; padding: 28px 24px; }
+
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+
+  .testi-grid { grid-template-columns: 1fr; }
+
+  footer { flex-direction: column; text-align: center; padding: 32px 24px; }
+  footer ul { flex-wrap: wrap; justify-content: center; }
+
+  .logos { padding: 24px; }
+}
+@media (max-width: 520px) {
+  .steps-row { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .hero-form { flex-direction: column; box-shadow: none; border: none; }
+  .hero-input { border: 1.5px solid var(--black); border-radius: 3px; }
+  .hero-submit { border-radius: 3px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  🎉 얼리버드 특가 진행 중 — 선착순 <strong>50개 업체</strong> 한정 · 평생 이용권 <strong>$299</strong>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Han<em>Jobs</em></div>
+  <ul class="nav-links">
+    <li><a href="#problem">문제점</a></li>
+    <li><a href="#how">사용방법</a></li>
+    <li><a href="#pricing">요금제</a></li>
+    <li><a href="#testimonials">후기</a></li>
+  </ul>
+  <a class="nav-btn" href="#cta">무료로 시작하기 →</a>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="hero" id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      🇺🇸 미국 한인 전용 채용 플랫폼
+    </div>
+
+    <h1 class="hero-h1">
+      작은 식당도<br>
+      <span class="accent">대기업처럼</span><br>
+      <span class="italic">채용하세요</span>
+    </h1>
+
+    <p class="hero-ko">AI가 HR 팀장 역할을 합니다</p>
+
+    <p class="hero-desc">
+      라디오코리아 게시판, 이제 그만. <b>HanJobs</b>는 미국 한인 중소기업을 위한
+      AI HR 대행 플랫폼입니다. <b>5분 안에 공고를 올리고</b>,
+      AI가 지원자를 스크리닝하고, 카카오톡으로 바로 알림 받으세요.
+    </p>
+
+    <form class="hero-form" onsubmit="handleHeroSubmit(event)">
+      <input type="email" class="hero-input" placeholder="이메일 주소 입력" id="heroEmail" required>
+      <button type="submit" class="hero-submit">얼리버드 신청 →</button>
+    </form>
+
+    <div class="hero-fine">
+      <span>무료로 시작</span>
+      <span>카드 불필요</span>
+      <span>언제든 취소</span>
+    </div>
+  </div>
+
+  <!-- PHONE MOCKUP -->
+  <div class="hero-visual">
+    <div style="position: relative; display: inline-block;">
+
+      <!-- Float cards -->
+      <div class="float-card fc-left">
+        <div class="fc-icon">🤖</div>
+        <div class="fc-label">AI 스크리닝</div>
+        <div class="fc-val fc-gold">완료 ✓</div>
+      </div>
+      <div class="float-card fc-right">
+        <div class="fc-icon">📱</div>
+        <div class="fc-label">카카오 알림</div>
+        <div class="fc-val fc-green">지원자 3명</div>
+      </div>
+
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="phone-status">
+            <span>9:41 AM</span>
+            <span>●●● 5G ▮▮▮</span>
+          </div>
+          <div class="phone-header">
+            <div class="phone-header-top">
+              <div class="ph-logo">HanJobs</div>
+              <div class="ph-badge">🇺🇸🇰🇷 한인전용</div>
+            </div>
+            <div class="phone-search">🔍 직종, 지역, 급여 검색…</div>
+          </div>
+
+          <div class="pjob">
+            <div class="pjob-top">
+              <div class="pjob-title">한식당 서버 & 홀매니저</div>
+              <div class="pjob-new">NEW</div>
+            </div>
+            <div class="pjob-biz">청기와 한식당 · LA Koreatown</div>
+            <div class="pjob-tags">
+              <div class="pjob-tag">$18–22/hr</div>
+              <div class="pjob-tag">풀타임</div>
+              <div class="pjob-tag">한국어</div>
+            </div>
+          </div>
+
+          <div class="pjob">
+            <div class="pjob-top">
+              <div class="pjob-title">네일샵 테크니션</div>
+              <div class="pjob-ai">AI매칭</div>
+            </div>
+            <div class="pjob-biz">블루밍뷰티 · Irvine, CA</div>
+            <div class="pjob-tags">
+              <div class="pjob-tag">$20–28/hr</div>
+              <div class="pjob-tag">파트타임 가능</div>
+            </div>
+          </div>
+
+          <div class="pjob">
+            <div class="pjob-top">
+              <div class="pjob-title">내과 프런트 데스크</div>
+              <div class="pjob-new">NEW</div>
+            </div>
+            <div class="pjob-biz">정준내과 · Torrance</div>
+            <div class="pjob-tags">
+              <div class="pjob-tag">$22–26/hr</div>
+              <div class="pjob-tag">영주권 우대</div>
+            </div>
+          </div>
+
+          <div class="phone-ai">
+            <div class="ai-dot">🤖</div>
+            <div class="ai-msg"><b>AI 에이전트</b>가 JD 초안 완성.<br>지원자 3건 스크리닝 완료.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGOS STRIP -->
+<hr class="divider">
+<div class="logos">
+  <div class="logos-label">타겟 업종</div>
+  <div class="logos-row">
+    <div class="logo-item">🍜 한식당 · 카페</div>
+    <div class="logo-item">💅 네일 · 뷰티</div>
+    <div class="logo-item">🏥 의원 · 치과</div>
+    <div class="logo-item">🏢 회계 · CPA</div>
+    <div class="logo-item">🛒 마트 · 리테일</div>
+    <div class="logo-item">🚚 물류 · 무역</div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- ══════════════ PROBLEM ══════════════ -->
+<section class="problem" id="problem">
+  <div class="container">
+    <div class="prob-layout">
+      <div>
+        <div class="sec-eyebrow">// 지금 이 문제 겪고 계신가요</div>
+        <h2 class="sec-title">기존 구인 방식,<br><em>왜 안 되는가</em></h2>
+        <p class="sec-sub">라디오코리아, 크레이그리스트, Indeed — 셋 다 한인 소규모 업체에는 맞지 않습니다.</p>
+
+        <div class="prob-list reveal">
+          <div class="prob-item">
+            <div class="prob-num">01</div>
+            <div class="prob-text">
+              <h4>공고 하나 올리는 데 30분</h4>
+              <p>라디오코리아 게시판은 2000년대 UI. 사진 첨부, 형식 맞추기, 반복 작업… 바쁜 사장님 시간이 없습니다.</p>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-text" style="padding-left:0;">
+              <div style="display:flex;gap:16px;">
+                <div class="prob-num">02</div>
+                <div>
+                  <h4>이력서도 없이 전화만 온다</h4>
+                  <p>누가 지원했는지 기록도 없고, 비교도 안 됩니다. 결국 지인 소개에 의존.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prob-item">
+            <div class="prob-num">03</div>
+            <div class="prob-text">
+              <h4>Indeed엔 한국어 가능자가 없다</h4>
+              <p>영어 공고엔 전혀 맞지 않는 사람들만 옵니다. 시간과 돈 낭비.</p>
+            </div>
+          </div>
+          <div class="prob-item" style="border-bottom:none;">
+            <div class="prob-num">04</div>
+            <div class="prob-text">
+              <h4>HR 법규를 모른 채 고용했다가</h4>
+              <p>캘리포니아 노동법, I-9, W-4… 작은 실수 하나가 큰 벌금으로 이어집니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="prob-right reveal">
+        <div class="versus-box">
+          <div class="versus-header">
+            <div class="vh-old">기존 방식</div>
+            <div class="vh-new">HanJobs ✓</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">공고 작성 30분+</div>
+            <div class="vr-new">AI가 5분 안에 완성</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">전화로만 지원</div>
+            <div class="vr-new">인앱 원클릭 지원</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">한국어 지원 없음</div>
+            <div class="vr-new">한/영 동시 공고</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">지원자 관리 불가</div>
+            <div class="vr-new">AI 1차 스크리닝</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">알림 없음</div>
+            <div class="vr-new">카카오톡 즉시 알림</div>
+          </div>
+          <div class="versus-row">
+            <div class="vr-old">허위 공고 구분 불가</div>
+            <div class="vr-new">사업자 인증 배지</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ HOW IT WORKS ══════════════ -->
+<section id="how">
+  <div class="container">
+    <div class="sec-eyebrow">// 사용 방법</div>
+    <h2 class="sec-title">딱 <em>4단계</em>,<br>5분이면 충분합니다</h2>
+    <p class="sec-sub">HR 경험 없어도 됩니다. AI가 처음부터 끝까지 도와드립니다.</p>
+
+    <div class="steps-row reveal">
+      <div class="step-box" data-num="01">
+        <div class="step-tag">STEP 01</div>
+        <span class="step-emoji">🏢</span>
+        <h3>업체 등록</h3>
+        <p>사업자 번호로 간단히 인증. 신뢰할 수 있는 한인 업체만 공고를 올릴 수 있습니다.</p>
+      </div>
+      <div class="step-box" data-num="02">
+        <div class="step-tag">STEP 02</div>
+        <span class="step-emoji">🤖</span>
+        <h3>AI가 JD 작성</h3>
+        <p>직종만 클릭하면 AI가 한국어·영어 채용공고 초안을 자동 완성. 수정만 하면 끝.</p>
+      </div>
+      <div class="step-box" data-num="03">
+        <div class="step-tag">STEP 03</div>
+        <span class="step-emoji">📋</span>
+        <h3>AI 자동 스크리닝</h3>
+        <p>지원서를 AI가 1차 검토. 조건에 맞는 후보만 추려서 알려드립니다.</p>
+      </div>
+      <div class="step-box" data-num="04">
+        <div class="step-tag">STEP 04</div>
+        <span class="step-emoji">💬</span>
+        <h3>카카오톡 알림</h3>
+        <p>새 지원자, 인터뷰 일정, 온보딩 서류 — 모두 카카오톡으로 즉시 받으세요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STATS ══════════════ -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num">200만+</div>
+      <div class="stat-label">미국 내 한인 인구</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">10만+</div>
+      <div class="stat-label">한인 소유 사업체</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">5분</div>
+      <div class="stat-label">평균 공고 등록 시간</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">구직자 이용 요금</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PRICING ══════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="sec-eyebrow">// 요금제</div>
+    <h2 class="sec-title">투명한 가격,<br><span class="gold">숨겨진 비용 없음</span></h2>
+    <p class="sec-sub">구직자는 완전 무료. 고용주는 한 달 커피값으로 채용 전과정을 자동화하세요.</p>
+
+    <div class="pricing-grid reveal">
+      <!-- Starter -->
+      <div class="price-box">
+        <div class="price-tier-label">Starter</div>
+        <div class="price-amount"><sup>$</sup>49</div>
+        <div class="price-per">/ 월 · 언제든 취소</div>
+        <ul class="price-features">
+          <li>채용 공고 3개</li>
+          <li>기본 지원자 관리</li>
+          <li>AI JD 자동 작성</li>
+          <li>이메일 알림</li>
+        </ul>
+        <button class="btn-plan btn-plan-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">시작하기</button>
+      </div>
+
+      <!-- Growth -->
+      <div class="price-box pop">
+        <div class="pop-label">🔥 가장 인기</div>
+        <div class="price-tier-label">Growth</div>
+        <div class="price-amount"><sup>$</sup>99</div>
+        <div class="price-per">/ 월 · 언제든 취소</div>
+        <ul class="price-features">
+          <li class="bold">무제한 채용 공고</li>
+          <li class="bold">AI 1차 스크리닝</li>
+          <li class="bold">카카오톡 알림</li>
+          <li>인터뷰 일정 자동 조율</li>
+          <li>한/영 동시 공고</li>
+          <li>사업자 인증 배지</li>
+        </ul>
+        <button class="btn-plan btn-plan-fill" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">지금 시작하기</button>
+      </div>
+
+      <!-- HR Pro -->
+      <div class="price-box">
+        <div class="price-tier-label">HR Pro</div>
+        <div class="price-amount"><sup>$</sup>199</div>
+        <div class="price-per">/ 월 · 언제든 취소</div>
+        <ul class="price-features">
+          <li>Growth 전체 포함</li>
+          <li>온보딩 서류 자동화</li>
+          <li>컴플라이언스 체크</li>
+          <li>전담 HR 컨설턴트</li>
+        </ul>
+        <button class="btn-plan btn-plan-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">문의하기</button>
+      </div>
+    </div>
+
+    <!-- LTD -->
+    <div class="ltd-box reveal">
+      <div>
+        <h3>🎉 창업 특가 — <em>평생 이용권</em></h3>
+        <p>선착순 50개 업체 한정 · 출시 기념 특별 할인 · 언제든 환불 보장</p>
+      </div>
+      <div class="ltd-price-wrap">
+        <div class="ltd-original">정가 $99/월</div>
+        <div class="ltd-amount"><sup>$</sup>299</div>
+        <div class="ltd-tag">평생 Growth 플랜</div>
+      </div>
+      <button class="btn-ltd" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+        지금 바로 신청 →
+      </button>
+    </div>
+
+    <div class="slots-bar">
+      ⏰ 남은 자리: <span id="slotCount">43</span>개 / 50개
+      <div class="progress-wrap">
+        <div class="progress-bg"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section id="testimonials">
+  <div class="container">
+    <div class="sec-eyebrow">// 사용자 후기</div>
+    <h2 class="sec-title">직접 써본<br><em>사장님들의 이야기</em></h2>
+
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          라디오코리아에 올려도 이력서도 없이 전화만 왔었어요. HanJobs는 지원자 정보가 다 정리되어 있어서 비교하기가 너무 편해요. 진작에 썼으면 좋았을 텐데.
+        </p>
+        <div class="testi-author">
+          <div class="testi-ava" style="background:#fdecea;">👨‍🍳</div>
+          <div>
+            <div class="testi-name">박 사장님</div>
+            <div class="testi-role">LA Koreatown · 한식당</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          AI가 채용공고를 대신 써줘서 정말 편해요. 한국어로 설명하면 영어 공고도 자동으로 나오고, 직원 구하는 시간이 반으로 줄었어요.
+        </p>
+        <div class="testi-author">
+          <div class="testi-ava" style="background:#fef9ec;">💅</div>
+          <div>
+            <div class="testi-name">이 원장님</div>
+            <div class="testi-role">Irvine · 네일샵 오너</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">
+          카카오톡으로 지원 알림 오는 게 너무 편해요. 병원 운영하면서 이메일 자주 못 보는데, 이제 바로바로 확인할 수 있어서 좋아요.
+        </p>
+        <div class="testi-author">
+          <div class="testi-ava" style="background:#eaf4fb;">🏥</div>
+          <div>
+            <div class="testi-name">김 원장님</div>
+            <div class="testi-role">Torrance · 한인 내과</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FINAL CTA ══════════════ -->
+<section class="final-cta" id="cta">
+  <div class="container">
+    <h2>직원 구하느라<br><em>시간 낭비는 이제 그만</em></h2>
+    <p>얼리버드로 신청하시면 6개월 무료 이용 + 평생 특가 안내를 가장 먼저 받으실 수 있습니다.</p>
+
+    <form class="final-form" onsubmit="handleFinalSubmit(event)">
+      <input type="email" class="final-input" placeholder="이메일 주소를 입력하세요" id="finalEmail" required>
+      <button type="submit" class="final-btn">얼리버드 신청 →</button>
+    </form>
+    <p class="final-fine">✓ 스팸 없음 &nbsp;·&nbsp; ✓ 신용카드 불필요 &nbsp;·&nbsp; ✓ 언제든 취소</p>
+
+    <div class="success-toast" id="toast">
+      🎉 신청 완료! 곧 이메일로 연락드리겠습니다. 감사합니다!
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Han<em>Jobs</em></div>
+  <p>© 2025 HanJobs · Made for Korean Americans 🇺🇸🇰🇷</p>
+  <ul>
+    <li>이용약관</li>
+    <li>개인정보처리방침</li>
+    <li>문의하기</li>
+  </ul>
+</footer>
+
+<!-- ══════════════ SCRIPTS ══════════════ -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Slot countdown
+let slots = 43;
+function updateSlots() {
+  const el = document.getElementById('slotCount');
+  const bar = document.getElementById('progressFill');
+  if (el) el.textContent = slots;
+  if (bar) bar.style.width = ((slots / 50) * 100) + '%';
+}
+updateSlots();
+setInterval(() => {
+  if (slots > 37 && Math.random() > 0.8) {
+    slots--;
+    updateSlots();
+  }
+}, 9000);
+
+// Hero form
+function handleHeroSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('heroEmail').value;
+  if (!email) return;
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ 신청 완료!';
+  btn.style.background = '#2d8a4e';
+  document.getElementById('heroEmail').disabled = true;
+  // 실제 운영 시 Mailchimp / Tally API 연결
+}
+
+// Final form
+function handleFinalSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('finalEmail').value;
+  if (!email) return;
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ 완료!';
+  btn.style.background = '#2d8a4e';
+  btn.style.color = '#fff';
+  document.getElementById('finalEmail').disabled = true;
+  const toast = document.getElementById('toast');
+  toast.style.display = 'block';
+  toast.style.opacity = '0';
+  toast.style.transition = 'opacity 0.4s';
+  setTimeout(() => toast.style.opacity = '1', 10);
+  // 실제 운영 시 Mailchimp / Tally API 연결
+}
+</script>
+
+</body>
+</html>
