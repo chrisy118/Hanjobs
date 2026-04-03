@@ -14,7 +14,6 @@ html { scroll-behavior: smooth; }
 
 :root {
   --bg:      #FAF8F4;
-  --bg2:     #F3EFE8;
   --black:   #1A1614;
   --text:    #1A1614;
   --text2:   #4A4440;
@@ -79,26 +78,64 @@ nav {
   min-height: 100vh;
   border-bottom: 0.5px solid var(--border);
 }
+
+/* BLACK & WHITE PHOTO */
 .plate-img {
   position: relative;
   overflow: hidden;
+  background: #1a1a1a;
 }
 .plate-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.9s ease;
+  /* BLACK & WHITE EFFECT */
+  filter: grayscale(100%) contrast(1.08) brightness(0.92);
+  transition: transform 0.9s ease, filter 0.6s ease;
 }
-.plate:hover .plate-img img { transform: scale(1.03); }
+.plate:hover .plate-img img {
+  transform: scale(1.03);
+  filter: grayscale(100%) contrast(1.12) brightness(0.88);
+}
+
+/* Subtle dark overlay for depth */
+.plate-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.18) 0%,
+    rgba(0,0,0,0.04) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  pointer-events: none;
+}
+
 .plate-caption {
   position: absolute;
   bottom: 20px; left: 24px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.14em;
+  font-size: 0.56rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  z-index: 2;
+}
+
+/* Plate number watermark on image */
+.plate-num {
+  position: absolute;
+  top: 32px; left: 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 6rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+  z-index: 2;
+  letter-spacing: -0.04em;
+  pointer-events: none;
 }
 
 .plate-content {
@@ -119,13 +156,13 @@ nav {
 }
 .pf-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.56rem;
+  font-size: 0.54rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text3);
 }
 
-/* ─── TYPE ─── */
+/* ─── TYPOGRAPHY ─── */
 .eyebrow {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.6rem;
@@ -140,8 +177,7 @@ nav {
 .eyebrow::before {
   content: '';
   display: block;
-  width: 18px;
-  height: 0.5px;
+  width: 18px; height: 0.5px;
   background: var(--amber);
   flex-shrink: 0;
 }
@@ -191,7 +227,6 @@ h2 em { font-style: italic; color: var(--amber); }
   cursor: pointer;
   transition: background 0.2s, transform 0.15s;
   margin-bottom: 16px;
-  display: block;
   width: fit-content;
 }
 .btn:hover { background: var(--amber); transform: translateY(-1px); }
@@ -211,11 +246,11 @@ h2 em { font-style: italic; color: var(--amber); }
 }
 .link:hover { opacity: 0.65; }
 
-/* ─── PLATE I HERO ─── */
+/* ─── PLATE I ─── */
 #p1 { padding-top: 60px; }
 #p1 .plate-content { padding-top: 100px; }
 
-/* ─── PLATE II PROBLEM ─── */
+/* ─── PLATE II ─── */
 .prob-list { list-style: none; margin-bottom: 28px; }
 .prob-item {
   padding: 15px 0;
@@ -224,13 +259,12 @@ h2 em { font-style: italic; color: var(--amber); }
 .prob-item:first-child { border-top: 0.5px solid var(--border); }
 .prob-quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
   font-weight: 400;
   font-style: italic;
   color: var(--text2);
   line-height: 1.55;
 }
-
 .connective {
   font-size: 0.88rem;
   font-weight: 300;
@@ -238,7 +272,6 @@ h2 em { font-style: italic; color: var(--amber); }
   line-height: 1.85;
   margin-bottom: 24px;
 }
-
 .quote-block {
   border-left: 1.5px solid var(--amber);
   padding: 16px 20px;
@@ -249,12 +282,12 @@ h2 em { font-style: italic; color: var(--amber); }
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.06rem;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.72;
   color: var(--text);
 }
 .quote-block em { font-style: italic; color: var(--amber); font-weight: 500; }
 
-/* ─── PLATE III CAPABILITIES ─── */
+/* ─── PLATE III ─── */
 .cap-list { list-style: none; margin-bottom: 28px; }
 .cap-item {
   display: flex;
@@ -287,7 +320,7 @@ h2 em { font-style: italic; color: var(--amber); }
   margin-bottom: 32px;
 }
 
-/* ─── PLATE IV STORY ─── */
+/* ─── PLATE IV ─── */
 .story p {
   font-size: 0.9rem;
   font-weight: 300;
@@ -311,12 +344,12 @@ h2 em { font-style: italic; color: var(--amber); }
 }
 .story-role {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   color: var(--text3);
   letter-spacing: 0.1em;
 }
 
-/* ─── PLATE V SERVICES ─── */
+/* ─── PLATE V ─── */
 .svc-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
 .svc-card {
   border: 0.5px solid var(--border);
@@ -342,7 +375,7 @@ h2 em { font-style: italic; color: var(--amber); }
 }
 .svc-price {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   color: var(--text3);
 }
 .svc-title {
@@ -359,50 +392,47 @@ h2 em { font-style: italic; color: var(--amber); }
   line-height: 1.7;
 }
 
-/* ─── PLATE VI CTA DARK ─── */
+/* ─── PLATE VI DARK ─── */
 #p6 {
   grid-template-columns: 1fr;
-  background: #1A1614;
+  background: #161412;
   min-height: 80vh;
 }
 #p6 .plate-content {
   align-items: center;
   text-align: center;
-  padding: 100px 64px 100px;
+  padding: 100px 64px 110px;
   max-width: 700px;
   margin: 0 auto;
   width: 100%;
 }
-#p6 .eyebrow {
-  color: rgba(200,132,74,0.7);
-  justify-content: center;
-}
-#p6 .eyebrow::before { background: rgba(200,132,74,0.4); }
-#p6 h2 { color: rgba(250,248,244,0.92); }
+#p6 .eyebrow { color: rgba(200,132,74,0.6); justify-content: center; }
+#p6 .eyebrow::before { background: rgba(200,132,74,0.35); }
+#p6 h2 { color: rgba(250,248,244,0.9); }
 #p6 h2 em { color: var(--amber2); }
-#p6 .body { color: rgba(250,248,244,0.45); }
-#p6 .btn { background: var(--amber); margin: 0 auto 20px; }
-#p6 .btn:hover { background: var(--amber2); }
+#p6 .body { color: rgba(250,248,244,0.42); }
+#p6 .plate-footer { border-top-color: rgba(250,248,244,0.06); left: 48px; right: 48px; }
+#p6 .pf-label { color: rgba(250,248,244,0.16); }
 
 .contact-row {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 .contact-link {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.62rem;
-  color: rgba(250,248,244,0.3);
+  font-size: 0.6rem;
+  color: rgba(250,248,244,0.28);
   letter-spacing: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
-  transition: color 0.2s;
-  border: 0.5px solid rgba(250,248,244,0.12);
-  padding: 7px 14px;
+  border: 0.5px solid rgba(250,248,244,0.1);
+  padding: 8px 14px;
   border-radius: 1px;
+  transition: color 0.2s, border-color 0.2s;
 }
 .contact-link:hover { color: var(--amber2); border-color: var(--amber); }
 
@@ -411,20 +441,14 @@ h2 em { font-style: italic; color: var(--amber); }
   font-size: 1.1rem;
   font-weight: 300;
   font-style: italic;
-  color: rgba(250,248,244,0.2);
+  color: rgba(250,248,244,0.18);
 }
-
-#p6 .plate-footer {
-  border-top-color: rgba(250,248,244,0.07);
-  left: 48px; right: 48px;
-}
-#p6 .pf-label { color: rgba(250,248,244,0.18); }
 
 /* ─── REVEAL ─── */
 .reveal {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .reveal.on { opacity: 1; transform: none; }
 
@@ -432,7 +456,7 @@ h2 em { font-style: italic; color: var(--amber); }
 @media (max-width: 860px) {
   nav { padding: 0 20px; }
   .plate { grid-template-columns: 1fr; min-height: auto; }
-  .plate-img { height: 55vw; min-height: 240px; }
+  .plate-img { height: 56vw; min-height: 240px; }
   .plate-content { padding: 44px 24px 72px; }
   .plate-footer { left: 24px; right: 24px; }
   h1 { font-size: 2.2rem; }
@@ -442,7 +466,7 @@ h2 em { font-style: italic; color: var(--amber); }
   #p6 { grid-template-columns: 1fr; }
   #p6 .plate-content { padding: 60px 24px 80px; }
   #p6 .plate-footer { left: 24px; right: 24px; }
-  .contact-row { gap: 10px; }
+  .contact-row { gap: 8px; }
 }
 </style>
 </head>
@@ -457,9 +481,11 @@ h2 em { font-style: italic; color: var(--amber); }
 <!-- ═══════════ PLATE I — HERO ═══════════ -->
 <section class="plate" id="p1">
   <div class="plate-img">
+    <div class="plate-num">I</div>
+    <!-- 흑백: 혼자 걷는 남성, 뒷모습, 조용한 길 -->
     <img
-      src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1400&q=85&auto=format&fit=crop"
-      alt="숲길 — 여정의 시작"
+      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=90&auto=format&fit=crop"
+      alt="혼자 걷는 사람 — 여정의 시작"
       loading="eager"
     >
     <div class="plate-caption">Plate I · The Journey Begins</div>
@@ -467,13 +493,11 @@ h2 em { font-style: italic; color: var(--amber); }
 
   <div class="plate-content reveal">
     <div class="eyebrow">AI 동행 · Los Angeles</div>
-
     <h1>
       당신의 경험이<br>
       <em>AI와 함께</em><br>
       지금부터 사업이 됩니다.
     </h1>
-
     <p class="body">
       AI는 도구가 아닙니다.<br>
       당신의 경험을 사업으로 바꿔주는 동반자입니다.<br><br>
@@ -481,10 +505,8 @@ h2 em { font-style: italic; color: var(--amber); }
       AI 없이는 아무것도 시작 못 했을 겁니다.<br>
       AI가 있기에, 지금 이 자리에 있습니다.
     </p>
-
     <a href="#p6" class="btn">60분 무료 세션 신청하기 →</a>
     <a href="#p3" class="link">AI가 뭘 해주는지 직접 보기</a>
-
     <div class="plate-footer">
       <span class="pf-label">Plate I — The Journey Begins</span>
       <span class="pf-label">Vision & Execution</span>
@@ -495,9 +517,11 @@ h2 em { font-style: italic; color: var(--amber); }
 <!-- ═══════════ PLATE II — PROBLEM ═══════════ -->
 <section class="plate" id="p2">
   <div class="plate-img">
+    <div class="plate-num">II</div>
+    <!-- 흑백: 창가에 혼자 앉아 생각하는 사람 -->
     <img
-      src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1400&q=85&auto=format&fit=crop&crop=right"
-      alt="안개 숲 — 문턱"
+      src="https://images.unsplash.com/photo-1499343162-f90e74119166?w=1400&q=90&auto=format&fit=crop"
+      alt="창가에 앉아 생각하는 사람 — 문턱"
       loading="lazy"
     >
     <div class="plate-caption">Plate II · The Threshold</div>
@@ -505,9 +529,7 @@ h2 em { font-style: italic; color: var(--amber); }
 
   <div class="plate-content reveal">
     <div class="eyebrow">Common Concerns</div>
-
     <h2>솔직히<br>이런 생각 드셨죠?</h2>
-
     <ul class="prob-list">
       <li class="prob-item">
         <p class="prob-quote">"AI 써봤는데... 신기하긴 한데 나랑 무슨 상관이지?"</p>
@@ -519,13 +541,11 @@ h2 em { font-style: italic; color: var(--amber); }
         <p class="prob-quote">"나이도 있고, 자본도 없는데 지금 시작해서 뭐가 달라질까"</p>
       </li>
     </ul>
-
     <p class="connective">
       이 질문들, 정확히 압니다.<br>
       AI에 대한 호기심과 두려움.<br>
       이 두 감정이 동시에 드는 건 당연합니다.
     </p>
-
     <div class="quote-block">
       <p>
         하지만 한 가지만 기억하세요.<br>
@@ -533,9 +553,7 @@ h2 em { font-style: italic; color: var(--amber); }
         <em>지금 이 상태의 당신을 그대로 씁니다.</em>
       </p>
     </div>
-
     <a href="#p3" class="btn">그 다음의 가능성 확인하기 →</a>
-
     <div class="plate-footer">
       <span class="pf-label">Plate II — The Threshold</span>
       <span class="pf-label">Inner Dialogue</span>
@@ -546,9 +564,11 @@ h2 em { font-style: italic; color: var(--amber); }
 <!-- ═══════════ PLATE III — AI CAPABILITIES ═══════════ -->
 <section class="plate" id="p3">
   <div class="plate-img">
+    <div class="plate-num">III</div>
+    <!-- 흑백: 빈 책상 위의 노트와 펜, 새벽 조명 -->
     <img
-      src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1400&q=85&auto=format&fit=crop"
-      alt="큰 나무 — 실행"
+      src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1400&q=90&auto=format&fit=crop"
+      alt="책상 위 노트 — 실행"
       loading="lazy"
     >
     <div class="plate-caption">Plate III · Real-Time Assistance</div>
@@ -556,9 +576,7 @@ h2 em { font-style: italic; color: var(--amber); }
 
   <div class="plate-content reveal">
     <div class="eyebrow">Capabilities · Series № 03</div>
-
     <h2>AI 동반자는 지금 이 순간<br>이런 일을 하고 있습니다.</h2>
-
     <ul class="cap-list">
       <li class="cap-item">
         <span class="cap-num">①</span>
@@ -577,14 +595,11 @@ h2 em { font-style: italic; color: var(--amber); }
         <p class="cap-text">기술적 한계와 두려움이라는 장벽을 흔적 없이 지워버립니다.</p>
       </li>
     </ul>
-
     <p class="cap-closer">
       이건 미래 얘기가 아닙니다.<br>
       지금 이 순간 일어나고 있는 일입니다.
     </p>
-
     <a href="#p6" class="btn">무료 상담 예약하기 →</a>
-
     <div class="plate-footer">
       <span class="pf-label">Plate III — Real-Time Assistance</span>
       <span class="pf-label">Execution in Motion</span>
@@ -595,9 +610,11 @@ h2 em { font-style: italic; color: var(--amber); }
 <!-- ═══════════ PLATE IV — STORY ═══════════ -->
 <section class="plate" id="p4">
   <div class="plate-img">
+    <div class="plate-num">IV</div>
+    <!-- 흑백: 밤에 창가에서 노트북 하는 남성 옆모습 -->
     <img
-      src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1400&q=85&auto=format&fit=crop"
-      alt="밤에 노트북 — 증인"
+      src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop"
+      alt="밤에 작업하는 사람 — 증인"
       loading="lazy"
     >
     <div class="plate-caption">Plate IV · The Witness</div>
@@ -605,9 +622,7 @@ h2 em { font-style: italic; color: var(--amber); }
 
   <div class="plate-content reveal">
     <div class="eyebrow">The Human Behind It</div>
-
     <h2>저는 이걸<br>직접 살고 있습니다</h2>
-
     <div class="story">
       <p>20년간 사업을 했습니다.<br>프랜차이즈 계약 90개, 브랜드 미국 런칭, 직원 70명.</p>
       <p>지금은 우버를 합니다.<br>빚 30만불이 있습니다. 당뇨가 있습니다.</p>
@@ -615,14 +630,11 @@ h2 em { font-style: italic; color: var(--amber); }
       <p>AI가 없었다면 시작조차 못 했을 겁니다.<br>AI가 있었기에, 지금 이 자리에 있습니다.</p>
       <p>저보다 조건이 나쁜 사람은 없을 겁니다.<br>그래서 당신도 할 수 있다는 걸 압니다.</p>
     </div>
-
     <div class="story-author">
       <div class="story-name">— Chris Hyun Yun</div>
       <div class="story-role">Los Angeles · 현재진행형 창업가 · AI 동행자</div>
     </div>
-
     <a href="#p6" class="btn">같이 걸어가요 →</a>
-
     <div class="plate-footer">
       <span class="pf-label">Plate IV — The Witness</span>
       <span class="pf-label">The Human Behind It</span>
@@ -633,9 +645,11 @@ h2 em { font-style: italic; color: var(--amber); }
 <!-- ═══════════ PLATE V — SERVICES ═══════════ -->
 <section class="plate" id="p5">
   <div class="plate-img">
+    <div class="plate-num">V</div>
+    <!-- 흑백: 두 사람이 나란히 걷는 뒷모습, 조용한 골목 -->
     <img
-      src="https://images.unsplash.com/photo-1476611338391-6f395a0dd82e?w=1400&q=85&auto=format&fit=crop"
-      alt="함께 걷는 사람들"
+      src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1400&q=90&auto=format&fit=crop"
+      alt="함께 걷는 두 사람 — 동행"
       loading="lazy"
     >
     <div class="plate-caption">Plate V · The Offering</div>
@@ -643,9 +657,7 @@ h2 em { font-style: italic; color: var(--amber); }
 
   <div class="plate-content reveal">
     <div class="eyebrow">Your Next Step</div>
-
     <h2>AI 동반자를 처음 만나는 방법,<br>딱 3가지입니다</h2>
-
     <div class="svc-cards">
       <div class="svc-card featured">
         <div class="svc-head">
@@ -655,7 +667,6 @@ h2 em { font-style: italic; color: var(--amber); }
         <div class="svc-title">첫 AI 동행 세션</div>
         <div class="svc-desc">설명 듣는 시간이 아닙니다. 당신 이야기를 AI에 넣고 실제 결과물을 만듭니다. 세션이 끝나면 손에 뭔가 들려있습니다.</div>
       </div>
-
       <div class="svc-card">
         <div class="svc-head">
           <span class="svc-tag">월 4회</span>
@@ -664,7 +675,6 @@ h2 em { font-style: italic; color: var(--amber); }
         <div class="svc-title">AI로 1인 기업 만들기</div>
         <div class="svc-desc">4주 동안 AI와 함께 실제로 만들어갑니다. 4주 후, 당신만의 사업이 세상에 나옵니다.</div>
       </div>
-
       <div class="svc-card">
         <div class="svc-head">
           <span class="svc-tag">월 4회</span>
@@ -674,9 +684,7 @@ h2 em { font-style: italic; color: var(--amber); }
         <div class="svc-desc">당신의 현재 상황에 AI를 직접 연결합니다. 다음 날부터 업무가 달라집니다.</div>
       </div>
     </div>
-
     <a href="#p6" class="btn">무료 세션 먼저 시작하기 →</a>
-
     <div class="plate-footer">
       <span class="pf-label">Plate V — The Offering</span>
       <span class="pf-label">Your Next Step</span>
@@ -688,31 +696,25 @@ h2 em { font-style: italic; color: var(--amber); }
 <section class="plate" id="p6">
   <div class="plate-content reveal">
     <div class="eyebrow">AI 동행 · Los Angeles · 2026</div>
-
     <h2>
       AI가 당신에게 뭘 해줄 수 있는지<br>
       <em>말이 아닌 경험으로</em> 보여드립니다
     </h2>
-
     <p class="body">
       60분입니다. 무료입니다.<br>
       당신 얘기만 가져오시면 됩니다.<br><br>
       AI는 이미 준비됐습니다.<br>
       저도 준비됐습니다.
     </p>
-
-    <a href="mailto:thekollex@gmail.com" class="btn btn-amber">
+    <a href="mailto:thekollex@gmail.com" class="btn btn-amber" style="margin: 0 auto 24px;">
       지금 무료 세션 신청하기 →
     </a>
-
     <div class="contact-row">
       <a href="https://open.kakao.com/o/chrisy118" class="contact-link" target="_blank">KakaoTalk</a>
       <a href="mailto:thekollex@gmail.com" class="contact-link">thekollex@gmail.com</a>
       <a href="tel:+12138042727" class="contact-link">213-804-2727</a>
     </div>
-
     <p class="final-line">혼자 걷지 않아도 됩니다.</p>
-
     <div class="plate-footer">
       <span class="pf-label">Plate VI — The Beginning</span>
       <span class="pf-label">AI 동행 · Los Angeles · 2026</span>
