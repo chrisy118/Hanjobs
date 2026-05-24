@@ -3,731 +3,789 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 동행 — 당신의 경험이 AI와 함께 지금부터 사업이 됩니다</title>
+<meta name="description" content="HanJobs — 한인 시니어를 위한 검증된 케어기버 연결 플랫폼. 남가주 전역 한국어 서비스.">
+<title>HanJobs — 한인 시니어 케어기버 플랫폼</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+:root{--primary:#1B6CA8;--primary-l:#2E8BC0;--primary-d:#14527E;--accent:#E07B3C;--accent-l:#F09050;--success:#2E7D52;--bg:#FAFAF7;--bg2:#F0EDE6;--white:#FFFFFF;--text:#1A1A2E;--text2:#4A4A60;--text3:#8A8AA8;--border:#E0DDD6;--shadow:0 4px 24px rgba(27,108,168,.10);--shadow-sm:0 2px 10px rgba(27,108,168,.08)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans KR','DM Sans',sans-serif;line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+.section-label{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--primary);background:rgba(27,108,168,.08);padding:5px 12px;border-radius:20px;margin-bottom:16px}
+.section-title{font-size:clamp(1.7rem,2.8vw,2.4rem);font-weight:700;color:var(--text);line-height:1.25;margin-bottom:14px}
+.section-title em{color:var(--primary);font-style:normal}
+.section-sub{font-size:1rem;font-weight:300;color:var(--text2);line-height:1.8;max-width:580px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-size:.95rem;font-weight:600;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--primary);color:var(--white)}
+.btn-primary:hover{background:var(--primary-l);transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,108,168,.28)}
+.btn-accent{background:var(--accent);color:var(--white)}
+.btn-accent:hover{background:var(--accent-l);transform:translateY(-1px);box-shadow:0 6px 20px rgba(224,123,60,.28)}
+.btn-outline{border:2px solid var(--primary);color:var(--primary);background:transparent}
+.btn-outline:hover{background:var(--primary);color:var(--white)}
+.btn-ghost{border:2px solid rgba(255,255,255,.4);color:var(--white);background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;padding:3px 9px;border-radius:12px}
+.badge-blue{background:rgba(27,108,168,.1);color:var(--primary)}
+.badge-green{background:rgba(46,125,82,.1);color:var(--success)}
 
-:root {
-  --bg:      #FAF8F4;
-  --black:   #1A1614;
-  --text:    #1A1614;
-  --text2:   #4A4440;
-  --text3:   #8A7E78;
-  --amber:   #C8844A;
-  --amber2:  #E8A870;
-  --border:  #E0D8CE;
-  --white:   #FFFFFF;
-}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(250,250,247,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transition:box-shadow .3s}
+#nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;max-width:1160px;margin:0 auto;padding:0 24px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.35rem;font-weight:700;color:var(--text)}
+.nav-logo-icon{width:36px;height:36px;background:var(--primary);border-radius:9px;display:flex;align-items:center;justify-content:center;color:white;font-size:1rem;font-weight:700}
+.nav-logo span{color:var(--primary)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--text2);transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-actions .btn{padding:10px 20px;font-size:.88rem}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--border);padding:20px 24px;z-index:199;flex-direction:column;gap:16px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;font-weight:500;color:var(--text2);padding:10px 0;border-bottom:1px solid var(--border)}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+/* HERO */
+#hero{padding-top:68px;background:linear-gradient(135deg,#0D3E6B 0%,#1B6CA8 50%,#2E8BC0 100%);position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1160px;margin:0 auto;padding:80px 24px 90px;position:relative;z-index:1}
+.hero-label{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.65);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 14px;border-radius:20px;margin-bottom:22px}
+.hero-label::before{content:'';width:6px;height:6px;background:#4ade80;border-radius:50%;display:block;box-shadow:0 0 0 3px rgba(74,222,128,.3)}
+.hero-title{font-size:clamp(2rem,3.5vw,3rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:20px}
+.hero-title em{color:#FDB462;font-style:normal;display:block}
+.hero-sub{font-size:1.05rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.85;margin-bottom:36px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-btns .btn{padding:15px 30px;font-size:1rem;border-radius:10px}
+.hero-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:32px;backdrop-filter:blur(12px)}
+.hero-card-title{font-size:1.05rem;font-weight:600;color:rgba(255,255,255,.9);margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+.hero-checklist{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
+.hero-check{display:flex;align-items:flex-start;gap:12px}
+.hero-check-icon{width:22px;height:22px;background:rgba(74,222,128,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:#4ade80;font-size:.75rem}
+.hero-check p{font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.6}
+.hero-check p strong{color:white;font-weight:600}
+.hero-card-cta{background:var(--accent);color:white;width:100%;justify-content:center;border-radius:10px;padding:14px;font-size:.95rem;font-weight:600}
+.hero-card-cta:hover{background:var(--accent-l);transform:translateY(-1px)}
+.hero-partners{padding:28px 24px 36px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:20px;flex-wrap:wrap;position:relative;z-index:1;max-width:1160px;margin:0 auto}
+.hero-partners-label{font-size:.74rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);white-space:nowrap}
+.partner-badge{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:8px 14px;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7)}
+.partner-badge-dot{width:8px;height:8px;border-radius:50%}
 
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: rgba(250,248,244,0.96);
-  backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 48px;
-  height: 60px;
-}
-.nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  color: var(--text);
-  text-decoration: none;
-}
-.nav-logo em { color: var(--amber); font-style: normal; }
-.nav-cta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  color: var(--white);
-  background: var(--black);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 1px;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.2s;
-}
-.nav-cta:hover { background: var(--amber); }
+/* STATS */
+#stats{background:var(--white);border-bottom:1px solid var(--border)}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1160px;margin:0 auto;padding:0 24px}
+.stat-item{padding:32px 24px;text-align:center;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:2.4rem;font-weight:700;color:var(--primary);line-height:1;margin-bottom:6px}
+.stat-num span{font-size:1.4rem}
+.stat-label{font-size:.88rem;font-weight:500;color:var(--text2)}
+.stat-sub{font-size:.76rem;color:var(--text3);margin-top:3px}
 
-/* ─── PLATE SYSTEM ─── */
-.plate {
-  display: grid;
-  grid-template-columns: 47% 53%;
-  min-height: 100vh;
-  border-bottom: 0.5px solid var(--border);
-}
+/* HOW */
+#how{padding:96px 0;background:var(--bg)}
+.how-header{text-align:center;margin-bottom:48px}
+.how-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:52px;background:var(--bg2);border-radius:12px;padding:6px;max-width:440px;margin-left:auto;margin-right:auto}
+.how-tab{flex:1;padding:12px 20px;border-radius:8px;font-size:.9rem;font-weight:600;color:var(--text3);transition:all .2s;text-align:center}
+.how-tab.active{background:var(--white);color:var(--primary);box-shadow:var(--shadow-sm)}
+.how-panel{display:none}
+.how-panel.active{display:block}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin:0 auto}
+.how-step{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 28px;position:relative;text-align:center;transition:box-shadow .2s,transform .2s}
+.how-step:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.how-step-num{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-l));color:white;font-size:1.35rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.how-panel[data-panel="caregiver"] .how-step-num{background:linear-gradient(135deg,var(--accent),var(--accent-l))}
+.how-step-icon{font-size:2rem;margin-bottom:12px}
+.how-step h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:10px}
+.how-step p{font-size:.88rem;font-weight:300;color:var(--text2);line-height:1.75}
 
-/* BLACK & WHITE PHOTO */
-.plate-img {
-  position: relative;
-  overflow: hidden;
-  background: #1a1a1a;
-}
-.plate-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  /* BLACK & WHITE EFFECT */
-  filter: grayscale(100%) contrast(1.08) brightness(0.92);
-  transition: transform 0.9s ease, filter 0.6s ease;
-}
-.plate:hover .plate-img img {
-  transform: scale(1.03);
-  filter: grayscale(100%) contrast(1.12) brightness(0.88);
-}
+/* CAREGIVERS */
+#caregivers{padding:96px 0;background:var(--bg2)}
+.cg-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;gap:20px;flex-wrap:wrap}
+.cg-filters{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 20px;align-items:center}
+.filter-label{font-size:.8rem;font-weight:600;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.filter-select{appearance:none;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 32px 9px 14px;font-size:.88rem;font-family:inherit;color:var(--text);cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238A8AA8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;min-width:140px;transition:border-color .2s}
+.filter-select:focus{outline:none;border-color:var(--primary)}
+.filter-btn-all{padding:9px 18px;background:var(--primary);color:white;border-radius:8px;font-size:.88rem;font-weight:600;transition:background .2s;margin-left:auto}
+.filter-btn-all:hover{background:var(--primary-l)}
+.cg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cg-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:box-shadow .25s,transform .25s;cursor:pointer}
+.cg-card:hover{box-shadow:var(--shadow);transform:translateY(-4px)}
+.cg-card-top{padding:24px 22px 18px;display:flex;gap:16px;align-items:flex-start;border-bottom:1px solid var(--border)}
+.cg-avatar{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:white;flex-shrink:0;position:relative}
+.cg-avatar-avail{position:absolute;bottom:1px;right:1px;width:14px;height:14px;background:#4ade80;border:2px solid white;border-radius:50%}
+.cg-info{flex:1;min-width:0}
+.cg-name{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.cg-cert{font-size:.75rem;font-weight:600;color:var(--primary);background:rgba(27,108,168,.08);padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px}
+.cg-location{font-size:.82rem;color:var(--text3);display:flex;align-items:center;gap:4px}
+.cg-rating{display:flex;align-items:center;gap:4px;font-size:.82rem;font-weight:600;color:var(--text2)}
+.cg-stars{color:#FBBF24;letter-spacing:-1px}
+.cg-card-mid{padding:14px 22px;border-bottom:1px solid var(--border)}
+.cg-services{display:flex;flex-wrap:wrap;gap:6px}
+.cg-service-tag{font-size:.74rem;font-weight:500;color:var(--text2);background:var(--bg2);border-radius:6px;padding:3px 9px}
+.cg-card-bot{padding:14px 22px;display:flex;justify-content:space-between;align-items:center}
+.cg-rate{font-size:1.15rem;font-weight:700;color:var(--text)}
+.cg-rate span{font-size:.78rem;font-weight:400;color:var(--text3)}
+.cg-exp{font-size:.82rem;color:var(--text3)}
+.cg-contact-btn{padding:8px 16px;background:var(--primary);color:white;border-radius:8px;font-size:.82rem;font-weight:600;transition:background .2s}
+.cg-contact-btn:hover{background:var(--primary-l)}
+.cg-empty{display:none;grid-column:1/-1;text-align:center;padding:60px;color:var(--text3);font-size:1rem}
 
-/* Subtle dark overlay for depth */
-.plate-img::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.18) 0%,
-    rgba(0,0,0,0.04) 60%,
-    rgba(0,0,0,0) 100%
-  );
-  pointer-events: none;
-}
+/* SERVICES */
+#services{padding:96px 0;background:var(--white)}
+.services-header{text-align:center;margin-bottom:56px}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.service-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px 22px;text-align:center;transition:all .2s}
+.service-card:hover{background:var(--white);border-color:var(--primary);box-shadow:var(--shadow);transform:translateY(-3px)}
+.service-icon{font-size:2.2rem;margin-bottom:14px}
+.service-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:8px}
+.service-desc{font-size:.8rem;font-weight:300;color:var(--text2);line-height:1.7}
 
-.plate-caption {
-  position: absolute;
-  bottom: 20px; left: 24px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.56rem;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  z-index: 2;
-}
+/* WHY */
+#why{padding:96px 0;background:linear-gradient(135deg,#0D3E6B,#1B6CA8)}
+.why-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-text .section-label{background:rgba(255,255,255,.1);color:rgba(255,255,255,.7)}
+.why-text .section-title{color:white}
+.why-text .section-title em{color:#FDB462}
+.why-text .section-sub{color:rgba(255,255,255,.6)}
+.why-list{display:flex;flex-direction:column;gap:18px;margin-top:36px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-icon{width:44px;height:44px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.why-item-text h4{font-size:.95rem;font-weight:700;color:white;margin-bottom:4px}
+.why-item-text p{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.7}
+.why-visual{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.why-vis-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px 20px;text-align:center;backdrop-filter:blur(8px)}
+.why-vis-card:nth-child(2){transform:translateY(20px)}
+.why-vis-card:nth-child(4){transform:translateY(-10px)}
+.why-vis-num{font-size:2.2rem;font-weight:700;color:#FDB462;line-height:1;margin-bottom:8px}
+.why-vis-label{font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.5}
 
-/* Plate number watermark on image */
-.plate-num {
-  position: absolute;
-  top: 32px; left: 28px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 6rem;
-  font-weight: 300;
-  color: rgba(255,255,255,0.06);
-  line-height: 1;
-  z-index: 2;
-  letter-spacing: -0.04em;
-  pointer-events: none;
-}
+/* REGISTER */
+#register{padding:96px 0;background:var(--bg)}
+.register-inner{max-width:860px;margin:0 auto}
+.register-header{text-align:center;margin-bottom:40px}
+.register-tabs{display:flex;border-radius:12px;overflow:hidden;border:1px solid var(--border);margin-bottom:36px}
+.register-tab{flex:1;padding:15px 20px;font-size:.95rem;font-weight:600;color:var(--text3);background:var(--white);transition:all .2s;text-align:center;border-right:1px solid var(--border)}
+.register-tab:last-child{border-right:none}
+.register-tab.active{background:var(--primary);color:white}
+.register-panel{display:none}
+.register-panel.active{display:block}
+.register-form{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:40px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:.85rem;font-weight:600;color:var(--text2)}
+.form-label span{color:var(--accent)}
+.form-input,.form-select,.form-textarea{padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:.93rem;font-family:inherit;color:var(--text);background:var(--bg);transition:border-color .2s,box-shadow .2s;width:100%}
+.form-input:focus,.form-select:focus,.form-textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(27,108,168,.1);background:white}
+.form-textarea{min-height:100px;resize:vertical}
+.form-checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px}
+.form-checkbox-row input[type="checkbox"]{width:18px;height:18px;margin-top:2px;cursor:pointer;accent-color:var(--primary)}
+.form-checkbox-row label{font-size:.85rem;color:var(--text2);line-height:1.6;cursor:pointer}
+.form-submit{width:100%;padding:16px;font-size:1rem;border-radius:10px;justify-content:center}
+.certifications-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cert-option{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:all .15s;font-size:.85rem;font-weight:500;color:var(--text2)}
+.cert-option input{accent-color:var(--primary)}
 
-.plate-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 64px 100px;
-  position: relative;
-}
+/* TESTIMONIALS */
+#testimonials{padding:96px 0;background:var(--bg2)}
+.testimonials-header{text-align:center;margin-bottom:52px}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testi-card{background:var(--white);border:1px solid var(--border);border-radius:16px;padding:32px 28px;position:relative}
+.testi-quote{font-size:3.5rem;font-weight:700;color:var(--primary);opacity:.15;line-height:1;position:absolute;top:18px;left:24px;font-family:Georgia,serif}
+.testi-body{font-size:.92rem;font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:24px;padding-top:12px;position:relative;z-index:1}
+.testi-author{display:flex;align-items:center;gap:12px;padding-top:18px;border-top:1px solid var(--border)}
+.testi-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:white}
+.testi-name{font-size:.9rem;font-weight:700;color:var(--text)}
+.testi-role{font-size:.78rem;color:var(--text3)}
 
-.plate-footer {
-  position: absolute;
-  bottom: 0; left: 64px; right: 64px;
-  border-top: 0.5px solid var(--border);
-  padding: 14px 0;
-  display: flex;
-  justify-content: space-between;
-}
-.pf-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.54rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text3);
-}
+/* FAQ */
+#faq{padding:80px 0;background:var(--white)}
+.faq-inner{max-width:740px;margin:0 auto}
+.faq-header{text-align:center;margin-bottom:44px}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-question{width:100%;text-align:left;padding:18px 22px;font-size:.97rem;font-weight:600;color:var(--text);background:var(--white);display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+.faq-question:hover{background:var(--bg)}
+.faq-question.open{color:var(--primary)}
+.faq-chevron{font-size:1.1rem;transition:transform .3s;color:var(--text3)}
+.faq-question.open .faq-chevron{transform:rotate(180deg);color:var(--primary)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-answer-inner{padding:0 22px 20px;font-size:.9rem;font-weight:300;color:var(--text2);line-height:1.85}
 
-/* ─── TYPOGRAPHY ─── */
-.eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: 22px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.eyebrow::before {
-  content: '';
-  display: block;
-  width: 18px; height: 0.5px;
-  background: var(--amber);
-  flex-shrink: 0;
-}
+/* CTA */
+#cta-banner{padding:72px 0;background:var(--bg2);text-align:center}
+.cta-title{font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:700;color:var(--text);margin-bottom:14px}
+.cta-title em{color:var(--primary);font-style:normal}
+.cta-sub{font-size:1rem;color:var(--text2);margin-bottom:32px;font-weight:300}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
-h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.6rem, 3.8vw, 3.8rem);
-  font-weight: 300;
-  line-height: 1.07;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-h1 em { font-style: italic; color: var(--amber); }
+/* FOOTER */
+footer{background:#0D1B2A;padding:60px 0 32px;color:rgba(255,255,255,.55)}
+.footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.footer-brand-icon{width:34px;height:34px;background:var(--primary);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem}
+.footer-brand-name{font-size:1.15rem;font-weight:700;color:white}
+.footer-desc{font-size:.85rem;line-height:1.8;margin-bottom:20px}
+.footer-contact a{display:flex;align-items:center;gap:8px;font-size:.83rem;margin-bottom:8px;color:rgba(255,255,255,.45);transition:color .2s}
+.footer-contact a:hover{color:rgba(255,255,255,.85)}
+.footer-col-title{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px}
+.footer-links{display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:.87rem;color:rgba(255,255,255,.5);transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.9)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.8rem}
+.footer-bottom-partners{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.footer-partner-tag{font-size:.74rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;color:rgba(255,255,255,.4)}
 
-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem, 3.3vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1.09;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  margin-bottom: 28px;
-}
-h2 em { font-style: italic; color: var(--amber); }
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,27,42,.65);z-index:1000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);border-radius:20px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto}
+.modal-header{padding:28px 32px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.modal-close{width:32px;height:32px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--text2);transition:background .2s;flex-shrink:0}
+.modal-close:hover{background:var(--border)}
+.modal-body{padding:28px 32px 32px}
+.modal-profile-top{display:flex;gap:20px;align-items:flex-start;margin-bottom:24px}
+.modal-avatar{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;color:white;flex-shrink:0}
+.modal-name{font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.modal-certs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.modal-meta{font-size:.87rem;color:var(--text3)}
+.modal-section{margin-bottom:24px}
+.modal-section-title{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.modal-services-list{display:flex;flex-wrap:wrap;gap:8px}
+.modal-service{font-size:.85rem;background:var(--bg2);border-radius:8px;padding:6px 14px;color:var(--text2)}
+.modal-schedule-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day-pill{padding:8px 4px;border-radius:8px;text-align:center;font-size:.78rem;font-weight:600}
+.day-pill.avail{background:rgba(46,125,82,.1);color:var(--success)}
+.day-pill.busy{background:var(--bg2);color:var(--text3)}
+.modal-rate-row{display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-radius:12px;padding:16px 20px;margin-bottom:20px}
+.modal-rate-big{font-size:1.8rem;font-weight:700;color:var(--primary)}
+.modal-rate-big span{font-size:.9rem;font-weight:400;color:var(--text3)}
+.modal-action-btns{display:flex;gap:12px}
+.modal-action-btns .btn{flex:1;justify-content:center}
 
-.body {
-  font-size: 0.93rem;
-  font-weight: 300;
-  color: var(--text2);
-  line-height: 1.9;
-  margin-bottom: 32px;
-}
+/* TOAST */
+#toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--success);color:white;padding:14px 28px;border-radius:10px;font-size:.92rem;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,.2);z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0)}
 
-/* ─── BUTTONS ─── */
-.btn {
-  display: inline-block;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--white);
-  background: var(--black);
-  padding: 14px 28px;
-  border-radius: 1px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
-  margin-bottom: 16px;
-  width: fit-content;
-}
-.btn:hover { background: var(--amber); transform: translateY(-1px); }
-.btn-amber { background: var(--amber); }
-.btn-amber:hover { background: var(--amber2); }
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.on{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
-.link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  color: var(--amber);
-  text-decoration: none;
-  border-bottom: 0.5px solid var(--amber);
-  padding-bottom: 2px;
-  display: inline-block;
-  transition: opacity 0.2s;
-}
-.link:hover { opacity: 0.65; }
-
-/* ─── PLATE I ─── */
-#p1 { padding-top: 60px; }
-#p1 .plate-content { padding-top: 100px; }
-
-/* ─── PLATE II ─── */
-.prob-list { list-style: none; margin-bottom: 28px; }
-.prob-item {
-  padding: 15px 0;
-  border-bottom: 0.5px solid var(--border);
-}
-.prob-item:first-child { border-top: 0.5px solid var(--border); }
-.prob-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  font-weight: 400;
-  font-style: italic;
-  color: var(--text2);
-  line-height: 1.55;
-}
-.connective {
-  font-size: 0.88rem;
-  font-weight: 300;
-  color: var(--text2);
-  line-height: 1.85;
-  margin-bottom: 24px;
-}
-.quote-block {
-  border-left: 1.5px solid var(--amber);
-  padding: 16px 20px;
-  background: rgba(200,132,74,0.04);
-  margin-bottom: 32px;
-}
-.quote-block p {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.06rem;
-  font-weight: 400;
-  line-height: 1.72;
-  color: var(--text);
-}
-.quote-block em { font-style: italic; color: var(--amber); font-weight: 500; }
-
-/* ─── PLATE III ─── */
-.cap-list { list-style: none; margin-bottom: 28px; }
-.cap-item {
-  display: flex;
-  gap: 18px;
-  padding: 16px 0;
-  border-bottom: 0.5px solid var(--border);
-  align-items: flex-start;
-}
-.cap-item:first-child { border-top: 0.5px solid var(--border); }
-.cap-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.15rem;
-  font-weight: 300;
-  color: var(--amber);
-  min-width: 22px;
-  padding-top: 2px;
-}
-.cap-text {
-  font-size: 0.88rem;
-  font-weight: 300;
-  color: var(--text2);
-  line-height: 1.78;
-}
-.cap-closer {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-style: italic;
-  color: var(--text2);
-  line-height: 1.7;
-  margin-bottom: 32px;
-}
-
-/* ─── PLATE IV ─── */
-.story p {
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: var(--text2);
-  line-height: 2.05;
-  margin-bottom: 14px;
-}
-.story p strong { color: var(--text); font-weight: 500; }
-.story-author {
-  border-top: 0.5px solid var(--border);
-  padding-top: 16px;
-  margin-bottom: 32px;
-  margin-top: 4px;
-}
-.story-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.story-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  color: var(--text3);
-  letter-spacing: 0.1em;
-}
-
-/* ─── PLATE V ─── */
-.svc-cards { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.svc-card {
-  border: 0.5px solid var(--border);
-  padding: 18px 22px;
-  border-radius: 1px;
-  background: var(--white);
-  transition: border-color 0.2s, background 0.2s;
-}
-.svc-card:hover { border-color: var(--amber); background: rgba(200,132,74,0.02); }
-.svc-card.featured { border-color: var(--amber); background: rgba(200,132,74,0.03); }
-.svc-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-.svc-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.58rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--amber);
-}
-.svc-price {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: var(--text3);
-}
-.svc-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.18rem;
-  font-weight: 400;
-  color: var(--text);
-  margin-bottom: 5px;
-}
-.svc-desc {
-  font-size: 0.8rem;
-  font-weight: 300;
-  color: var(--text2);
-  line-height: 1.7;
-}
-
-/* ─── PLATE VI DARK ─── */
-#p6 {
-  grid-template-columns: 1fr;
-  background: #161412;
-  min-height: 80vh;
-}
-#p6 .plate-content {
-  align-items: center;
-  text-align: center;
-  padding: 100px 64px 110px;
-  max-width: 700px;
-  margin: 0 auto;
-  width: 100%;
-}
-#p6 .eyebrow { color: rgba(200,132,74,0.6); justify-content: center; }
-#p6 .eyebrow::before { background: rgba(200,132,74,0.35); }
-#p6 h2 { color: rgba(250,248,244,0.9); }
-#p6 h2 em { color: var(--amber2); }
-#p6 .body { color: rgba(250,248,244,0.42); }
-#p6 .plate-footer { border-top-color: rgba(250,248,244,0.06); left: 48px; right: 48px; }
-#p6 .pf-label { color: rgba(250,248,244,0.16); }
-
-.contact-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-  flex-wrap: wrap;
-}
-.contact-link {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.6rem;
-  color: rgba(250,248,244,0.28);
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  text-transform: uppercase;
-  border: 0.5px solid rgba(250,248,244,0.1);
-  padding: 8px 14px;
-  border-radius: 1px;
-  transition: color 0.2s, border-color 0.2s;
-}
-.contact-link:hover { color: var(--amber2); border-color: var(--amber); }
-
-.final-line {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(250,248,244,0.18);
-}
-
-/* ─── REVEAL ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.reveal.on { opacity: 1; transform: none; }
-
-/* ─── MOBILE ─── */
-@media (max-width: 860px) {
-  nav { padding: 0 20px; }
-  .plate { grid-template-columns: 1fr; min-height: auto; }
-  .plate-img { height: 56vw; min-height: 240px; }
-  .plate-content { padding: 44px 24px 72px; }
-  .plate-footer { left: 24px; right: 24px; }
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.9rem; }
-  #p1 { padding-top: 60px; }
-  #p1 .plate-content { padding-top: 44px; }
-  #p6 { grid-template-columns: 1fr; }
-  #p6 .plate-content { padding: 60px 24px 80px; }
-  #p6 .plate-footer { left: 24px; right: 24px; }
-  .contact-row { gap: 8px; }
-}
+/* MOBILE */
+@media(max-width:1024px){.cg-grid{grid-template-columns:repeat(2,1fr)}.services-grid{grid-template-columns:repeat(2,1fr)}.footer-inner{grid-template-columns:1fr 1fr}.why-inner{gap:48px}}
+@media(max-width:768px){.nav-links,.nav-actions{display:none}.hamburger{display:flex}.hero-inner{grid-template-columns:1fr;gap:40px}.hero-card{display:none}.stats-inner{grid-template-columns:repeat(2,1fr)}.stat-item{border-right:none;border-bottom:1px solid var(--border)}.stat-item:nth-child(odd){border-right:1px solid var(--border)}.how-steps{grid-template-columns:1fr;max-width:420px}.cg-grid{grid-template-columns:1fr}.cg-filters{flex-direction:column;align-items:stretch}.filter-select{min-width:unset}.services-grid{grid-template-columns:repeat(2,1fr)}.why-inner{grid-template-columns:1fr}.why-visual{display:none}.testimonials-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.certifications-grid{grid-template-columns:repeat(2,1fr)}.footer-inner{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.modal-action-btns{flex-direction:column}.register-form{padding:24px 20px}.cta-btns{flex-direction:column;align-items:center}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#p1">AI <em>동행</em></a>
-  <a class="nav-cta" href="#p6">세션 신청하기</a>
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">H</div>
+      Han<span>Jobs</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">이용 방법</a>
+      <a href="#caregivers">케어기버 찾기</a>
+      <a href="#services">서비스</a>
+      <a href="#faq">FAQ</a>
+      <a href="tel:+12138042727">📞 213-804-2727</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#register" class="btn btn-outline" onclick="switchRegisterTab('patient')">케어 요청하기</a>
+      <a href="#register" class="btn btn-primary" onclick="switchRegisterTab('caregiver')">케어기버 등록</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-<!-- ═══════════ PLATE I — HERO ═══════════ -->
-<section class="plate" id="p1">
-  <div class="plate-img">
-    <div class="plate-num">I</div>
-    <!-- 흑백: 혼자 걷는 남성, 뒷모습, 조용한 길 -->
-    <img
-      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1400&q=90&auto=format&fit=crop"
-      alt="혼자 걷는 사람 — 여정의 시작"
-      loading="eager"
-    >
-    <div class="plate-caption">Plate I · The Journey Begins</div>
-  </div>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#how" onclick="closeMobileMenu()">이용 방법</a>
+  <a href="#caregivers" onclick="closeMobileMenu()">케어기버 찾기</a>
+  <a href="#services" onclick="closeMobileMenu()">서비스 안내</a>
+  <a href="#register" onclick="closeMobileMenu();switchRegisterTab('patient')">케어 요청하기</a>
+  <a href="#register" onclick="closeMobileMenu();switchRegisterTab('caregiver')">케어기버 등록하기</a>
+  <a href="tel:+12138042727">📞 213-804-2727</a>
+</div>
 
-  <div class="plate-content reveal">
-    <div class="eyebrow">AI 동행 · Los Angeles</div>
-    <h1>
-      당신의 경험이<br>
-      <em>AI와 함께</em><br>
-      지금부터 사업이 됩니다.
-    </h1>
-    <p class="body">
-      AI는 도구가 아닙니다.<br>
-      당신의 경험을 사업으로 바꿔주는 동반자입니다.<br><br>
-      나이도, 돈도, 코딩 실력도 필요 없습니다.<br>
-      AI 없이는 아무것도 시작 못 했을 겁니다.<br>
-      AI가 있기에, 지금 이 자리에 있습니다.
-    </p>
-    <a href="#p6" class="btn">60분 무료 세션 신청하기 →</a>
-    <a href="#p3" class="link">AI가 뭘 해주는지 직접 보기</a>
-    <div class="plate-footer">
-      <span class="pf-label">Plate I — The Journey Begins</span>
-      <span class="pf-label">Vision & Execution</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ PLATE II — PROBLEM ═══════════ -->
-<section class="plate" id="p2">
-  <div class="plate-img">
-    <div class="plate-num">II</div>
-    <!-- 흑백: 창가에 혼자 앉아 생각하는 사람 -->
-    <img
-      src="https://images.unsplash.com/photo-1499343162-f90e74119166?w=1400&q=90&auto=format&fit=crop"
-      alt="창가에 앉아 생각하는 사람 — 문턱"
-      loading="lazy"
-    >
-    <div class="plate-caption">Plate II · The Threshold</div>
-  </div>
-
-  <div class="plate-content reveal">
-    <div class="eyebrow">Common Concerns</div>
-    <h2>솔직히<br>이런 생각 드셨죠?</h2>
-    <ul class="prob-list">
-      <li class="prob-item">
-        <p class="prob-quote">"AI 써봤는데... 신기하긴 한데 나랑 무슨 상관이지?"</p>
-      </li>
-      <li class="prob-item">
-        <p class="prob-quote">"배워야 할 것 같은데 어디서부터 시작해야 할지 모르겠다"</p>
-      </li>
-      <li class="prob-item">
-        <p class="prob-quote">"나이도 있고, 자본도 없는데 지금 시작해서 뭐가 달라질까"</p>
-      </li>
-    </ul>
-    <p class="connective">
-      이 질문들, 정확히 압니다.<br>
-      AI에 대한 호기심과 두려움.<br>
-      이 두 감정이 동시에 드는 건 당연합니다.
-    </p>
-    <div class="quote-block">
-      <p>
-        하지만 한 가지만 기억하세요.<br>
-        AI는 준비된 사람을 기다리지 않습니다.<br>
-        <em>지금 이 상태의 당신을 그대로 씁니다.</em>
+<section id="hero">
+  <div class="hero-inner">
+    <div class="reveal">
+      <div class="hero-label">홈캐스트 USA 공식 케어기버 플랫폼</div>
+      <h1 class="hero-title">
+        한인 시니어를 위한<br>
+        <em>믿을 수 있는 케어기버</em><br>
+        바로 연결해 드립니다
+      </h1>
+      <p class="hero-sub">
+        한국어로 소통하는 검증된 케어기버와<br>
+        남가주 한인 시니어를 직접 연결합니다.<br>
+        LA 차병원 제휴 · 배경조사 완료 · 24시간 지원
       </p>
-    </div>
-    <a href="#p3" class="btn">그 다음의 가능성 확인하기 →</a>
-    <div class="plate-footer">
-      <span class="pf-label">Plate II — The Threshold</span>
-      <span class="pf-label">Inner Dialogue</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ PLATE III — AI CAPABILITIES ═══════════ -->
-<section class="plate" id="p3">
-  <div class="plate-img">
-    <div class="plate-num">III</div>
-    <!-- 흑백: 빈 책상 위의 노트와 펜, 새벽 조명 -->
-    <img
-      src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=1400&q=90&auto=format&fit=crop"
-      alt="책상 위 노트 — 실행"
-      loading="lazy"
-    >
-    <div class="plate-caption">Plate III · Real-Time Assistance</div>
-  </div>
-
-  <div class="plate-content reveal">
-    <div class="eyebrow">Capabilities · Series № 03</div>
-    <h2>AI 동반자는 지금 이 순간<br>이런 일을 하고 있습니다.</h2>
-    <ul class="cap-list">
-      <li class="cap-item">
-        <span class="cap-num">①</span>
-        <p class="cap-text">파편화된 당신의 경험을 하나의 완성된 사업 구조로 탈바꿈합니다.</p>
-      </li>
-      <li class="cap-item">
-        <span class="cap-num">②</span>
-        <p class="cap-text">혼자서는 결코 도달할 수 없었던 복잡한 결과물을 스스로 창조합니다.</p>
-      </li>
-      <li class="cap-item">
-        <span class="cap-num">③</span>
-        <p class="cap-text">당신이 잠든 사이에도 멈추지 않고 비즈니스의 엔진을 돌립니다.</p>
-      </li>
-      <li class="cap-item">
-        <span class="cap-num">④</span>
-        <p class="cap-text">기술적 한계와 두려움이라는 장벽을 흔적 없이 지워버립니다.</p>
-      </li>
-    </ul>
-    <p class="cap-closer">
-      이건 미래 얘기가 아닙니다.<br>
-      지금 이 순간 일어나고 있는 일입니다.
-    </p>
-    <a href="#p6" class="btn">무료 상담 예약하기 →</a>
-    <div class="plate-footer">
-      <span class="pf-label">Plate III — Real-Time Assistance</span>
-      <span class="pf-label">Execution in Motion</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ PLATE IV — STORY ═══════════ -->
-<section class="plate" id="p4">
-  <div class="plate-img">
-    <div class="plate-num">IV</div>
-    <!-- 흑백: 밤에 창가에서 노트북 하는 남성 옆모습 -->
-    <img
-      src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1400&q=90&auto=format&fit=crop"
-      alt="밤에 작업하는 사람 — 증인"
-      loading="lazy"
-    >
-    <div class="plate-caption">Plate IV · The Witness</div>
-  </div>
-
-  <div class="plate-content reveal">
-    <div class="eyebrow">The Human Behind It</div>
-    <h2>저는 이걸<br>직접 살고 있습니다</h2>
-    <div class="story">
-      <p>20년간 사업을 했습니다.<br>프랜차이즈 계약 90개, 브랜드 미국 런칭, 직원 70명.</p>
-      <p>지금은 우버를 합니다.<br>빚 30만불이 있습니다. 당뇨가 있습니다.</p>
-      <p><strong>그리고 매일 밤 AI와 함께 사업을 만들고 있습니다.</strong></p>
-      <p>AI가 없었다면 시작조차 못 했을 겁니다.<br>AI가 있었기에, 지금 이 자리에 있습니다.</p>
-      <p>저보다 조건이 나쁜 사람은 없을 겁니다.<br>그래서 당신도 할 수 있다는 걸 압니다.</p>
-    </div>
-    <div class="story-author">
-      <div class="story-name">— Chris Hyun Yun</div>
-      <div class="story-role">Los Angeles · 현재진행형 창업가 · AI 동행자</div>
-    </div>
-    <a href="#p6" class="btn">같이 걸어가요 →</a>
-    <div class="plate-footer">
-      <span class="pf-label">Plate IV — The Witness</span>
-      <span class="pf-label">The Human Behind It</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ PLATE V — SERVICES ═══════════ -->
-<section class="plate" id="p5">
-  <div class="plate-img">
-    <div class="plate-num">V</div>
-    <!-- 흑백: 두 사람이 나란히 걷는 뒷모습, 조용한 골목 -->
-    <img
-      src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1400&q=90&auto=format&fit=crop"
-      alt="함께 걷는 두 사람 — 동행"
-      loading="lazy"
-    >
-    <div class="plate-caption">Plate V · The Offering</div>
-  </div>
-
-  <div class="plate-content reveal">
-    <div class="eyebrow">Your Next Step</div>
-    <h2>AI 동반자를 처음 만나는 방법,<br>딱 3가지입니다</h2>
-    <div class="svc-cards">
-      <div class="svc-card featured">
-        <div class="svc-head">
-          <span class="svc-tag">무료 · 60분</span>
-          <span class="svc-price">$0 — 완전 무료</span>
-        </div>
-        <div class="svc-title">첫 AI 동행 세션</div>
-        <div class="svc-desc">설명 듣는 시간이 아닙니다. 당신 이야기를 AI에 넣고 실제 결과물을 만듭니다. 세션이 끝나면 손에 뭔가 들려있습니다.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-head">
-          <span class="svc-tag">월 4회</span>
-          <span class="svc-price">$400 / 월</span>
-        </div>
-        <div class="svc-title">AI로 1인 기업 만들기</div>
-        <div class="svc-desc">4주 동안 AI와 함께 실제로 만들어갑니다. 4주 후, 당신만의 사업이 세상에 나옵니다.</div>
-      </div>
-      <div class="svc-card">
-        <div class="svc-head">
-          <span class="svc-tag">월 4회</span>
-          <span class="svc-price">$300 / 월</span>
-        </div>
-        <div class="svc-title">AI 실전 적용 동행</div>
-        <div class="svc-desc">당신의 현재 상황에 AI를 직접 연결합니다. 다음 날부터 업무가 달라집니다.</div>
+      <div class="hero-btns">
+        <a href="#caregivers" class="btn btn-accent">케어기버 찾기 →</a>
+        <a href="#register" class="btn btn-ghost" onclick="switchRegisterTab('caregiver')">케어기버로 등록하기</a>
       </div>
     </div>
-    <a href="#p6" class="btn">무료 세션 먼저 시작하기 →</a>
-    <div class="plate-footer">
-      <span class="pf-label">Plate V — The Offering</span>
-      <span class="pf-label">Your Next Step</span>
+    <div class="hero-card reveal reveal-delay-2">
+      <div class="hero-card-title">✅ HanJobs가 특별한 이유</div>
+      <div class="hero-checklist">
+        <div class="hero-check">
+          <div class="hero-check-icon">✓</div>
+          <p><strong>100% 한국어 소통</strong> — 어르신과 케어기버 모두 한국어로 편안하게</p>
+        </div>
+        <div class="hero-check">
+          <div class="hero-check-icon">✓</div>
+          <p><strong>철저한 신원 검증</strong> — 모든 케어기버 배경조사·자격증 확인 완료</p>
+        </div>
+        <div class="hero-check">
+          <div class="hero-check-icon">✓</div>
+          <p><strong>LA 차병원 협력</strong> — 의료진 연계 및 보험 청구 지원</p>
+        </div>
+        <div class="hero-check">
+          <div class="hero-check-icon">✓</div>
+          <p><strong>빠른 매칭 보장</strong> — 평균 48시간 내 적합한 케어기버 연결</p>
+        </div>
+      </div>
+      <a href="#register" class="btn hero-card-cta" onclick="switchRegisterTab('patient')">지금 무료로 케어기버 찾기 →</a>
+    </div>
+  </div>
+  <div class="hero-partners">
+    <span class="hero-partners-label">공식 파트너</span>
+    <div class="partner-badge"><div class="partner-badge-dot" style="background:#4ade80"></div>홈캐스트 USA</div>
+    <div class="partner-badge"><div class="partner-badge-dot" style="background:#60a5fa"></div>LA 차병원 (HPMC)</div>
+    <div class="partner-badge"><div class="partner-badge-dot" style="background:#fbbf24"></div>닥터히어 AI</div>
+    <div class="partner-badge"><div class="partner-badge-dot" style="background:#f472b6"></div>CA MSO 공식 인증</div>
+  </div>
+</section>
+
+<div id="stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><div class="stat-num">200<span>+</span></div><div class="stat-label">등록 케어기버</div><div class="stat-sub">남가주 전역 활동 중</div></div>
+    <div class="stat-item reveal reveal-delay-1"><div class="stat-num">98<span>%</span></div><div class="stat-label">매칭 만족도</div><div class="stat-sub">실제 이용 가족 기준</div></div>
+    <div class="stat-item reveal reveal-delay-2"><div class="stat-num">48<span>h</span></div><div class="stat-label">평균 매칭 속도</div><div class="stat-sub">요청 후 연결까지</div></div>
+    <div class="stat-item reveal reveal-delay-3"><div class="stat-num">15<span>+</span></div><div class="stat-label">서비스 지역</div><div class="stat-sub">LA · OC · SD 포함</div></div>
+  </div>
+</div>
+
+<section id="how">
+  <div class="container">
+    <div class="how-header reveal">
+      <span class="section-label">이용 방법</span>
+      <h2 class="section-title">누구나 쉽게, <em>3단계</em>로 시작합니다</h2>
+      <p class="section-sub">복잡한 과정 없이 간단하게 원하는 서비스를 시작하세요.</p>
+    </div>
+    <div class="how-tabs" style="margin-bottom:52px">
+      <button class="how-tab active" onclick="switchHowTab('family',this)">👴 가족 / 환자</button>
+      <button class="how-tab" onclick="switchHowTab('caregiver',this)">🩺 케어기버</button>
+    </div>
+    <div class="how-panel active" id="how-family">
+      <div class="how-steps">
+        <div class="how-step reveal"><div class="how-step-num">1</div><div class="how-step-icon">📋</div><h3>케어 정보 입력</h3><p>어르신의 상태, 필요한 서비스, 지역, 예산을 간단히 입력하세요. 5분이면 충분합니다.</p></div>
+        <div class="how-step reveal reveal-delay-1"><div class="how-step-num">2</div><div class="how-step-icon">🤝</div><h3>케어기버 선택</h3><p>조건에 맞는 검증된 케어기버 목록을 받아보고, 프로필·경력·리뷰를 비교해 선택하세요.</p></div>
+        <div class="how-step reveal reveal-delay-2"><div class="how-step-num">3</div><div class="how-step-icon">💚</div><h3>서비스 시작</h3><p>매칭 확정 후 일정을 조율하고 케어가 시작됩니다. 진행 상황은 실시간으로 확인 가능합니다.</p></div>
+      </div>
+    </div>
+    <div class="how-panel" id="how-caregiver" data-panel="caregiver">
+      <div class="how-steps">
+        <div class="how-step reveal"><div class="how-step-num" style="background:linear-gradient(135deg,var(--accent),var(--accent-l))">1</div><div class="how-step-icon">👤</div><h3>프로필 등록</h3><p>경력, 자격증, 서비스 가능 지역과 시간을 등록하세요. 한국어로 작성 가능합니다.</p></div>
+        <div class="how-step reveal reveal-delay-1"><div class="how-step-num" style="background:linear-gradient(135deg,var(--accent),var(--accent-l))">2</div><div class="how-step-icon">✅</div><h3>검증 완료</h3><p>신원조회와 자격증 확인 후 인증 케어기버 배지를 받습니다. 보통 2~3 영업일 소요됩니다.</p></div>
+        <div class="how-step reveal reveal-delay-2"><div class="how-step-num" style="background:linear-gradient(135deg,var(--accent),var(--accent-l))">3</div><div class="how-step-icon">💰</div><h3>매칭 및 수입</h3><p>적합한 어르신과 매칭되어 안정적인 수입을 얻으세요. 평균 시급 $20~$35, 주 1회 정산.</p></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ PLATE VI — CTA DARK ═══════════ -->
-<section class="plate" id="p6">
-  <div class="plate-content reveal">
-    <div class="eyebrow">AI 동행 · Los Angeles · 2026</div>
-    <h2>
-      AI가 당신에게 뭘 해줄 수 있는지<br>
-      <em>말이 아닌 경험으로</em> 보여드립니다
-    </h2>
-    <p class="body">
-      60분입니다. 무료입니다.<br>
-      당신 얘기만 가져오시면 됩니다.<br><br>
-      AI는 이미 준비됐습니다.<br>
-      저도 준비됐습니다.
-    </p>
-    <a href="mailto:thekollex@gmail.com" class="btn btn-amber" style="margin: 0 auto 24px;">
-      지금 무료 세션 신청하기 →
-    </a>
-    <div class="contact-row">
-      <a href="https://open.kakao.com/o/chrisy118" class="contact-link" target="_blank">KakaoTalk</a>
-      <a href="mailto:thekollex@gmail.com" class="contact-link">thekollex@gmail.com</a>
-      <a href="tel:+12138042727" class="contact-link">213-804-2727</a>
+<section id="caregivers">
+  <div class="container">
+    <div class="cg-header reveal">
+      <div>
+        <span class="section-label">케어기버 찾기</span>
+        <h2 class="section-title">검증된 <em>한국어 케어기버</em></h2>
+      </div>
+      <a href="#register" class="btn btn-primary" onclick="switchRegisterTab('patient')">케어 요청서 작성하기 →</a>
     </div>
-    <p class="final-line">혼자 걷지 않아도 됩니다.</p>
-    <div class="plate-footer">
-      <span class="pf-label">Plate VI — The Beginning</span>
-      <span class="pf-label">AI 동행 · Los Angeles · 2026</span>
+    <div class="cg-filters reveal">
+      <span class="filter-label">🔍 필터</span>
+      <select class="filter-select" id="filter-region" onchange="filterCaregivers()">
+        <option value="">전체 지역</option>
+        <option value="코리아타운">코리아타운 (LA)</option>
+        <option value="토렌스">토렌스</option>
+        <option value="가디나">가디나</option>
+        <option value="어바인">어바인 (OC)</option>
+        <option value="샌타모니카">샌타모니카</option>
+        <option value="풀러턴">풀러턴</option>
+      </select>
+      <select class="filter-select" id="filter-service" onchange="filterCaregivers()">
+        <option value="">전체 서비스</option>
+        <option value="개인위생">개인위생 도움</option>
+        <option value="식사">식사 준비</option>
+        <option value="약">약 관리</option>
+        <option value="병원">병원 동행</option>
+        <option value="치매">치매 케어</option>
+        <option value="가사">가사 도우미</option>
+      </select>
+      <select class="filter-select" id="filter-rate" onchange="filterCaregivers()">
+        <option value="">전체 요금</option>
+        <option value="20이하">$20/h 이하</option>
+        <option value="20-25">$20–$25/h</option>
+        <option value="25이상">$25/h 이상</option>
+      </select>
+      <button class="filter-btn-all" onclick="resetFilters()">전체 보기</button>
+    </div>
+    <div class="cg-grid" id="cg-grid"></div>
+    <div class="cg-empty" id="cg-empty">조건에 맞는 케어기버가 없습니다. 필터를 조정해 보세요.</div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <span class="section-label">서비스 안내</span>
+      <h2 class="section-title">필요한 케어, <em>모두 제공합니다</em></h2>
+      <p class="section-sub" style="margin:0 auto">개인 맞춤형 케어플랜으로 어르신께 최적화된 서비스를 연결합니다.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-icon">🛁</div><div class="service-name">개인위생 도움</div><div class="service-desc">목욕, 세면, 구강 케어 등 일상적인 개인위생 관리를 도와드립니다.</div></div>
+      <div class="service-card reveal reveal-delay-1"><div class="service-icon">🍱</div><div class="service-name">식사 준비</div><div class="service-desc">한식 위주의 맞춤 식단 준비와 식사 보조 서비스를 제공합니다.</div></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon">💊</div><div class="service-name">약 관리</div><div class="service-desc">처방된 약의 정시 복용을 돕고 의료진과의 소통을 지원합니다.</div></div>
+      <div class="service-card reveal reveal-delay-3"><div class="service-icon">🏥</div><div class="service-name">병원 동행</div><div class="service-desc">병원 예약, 통역, 이동까지 전 과정을 함께 합니다.</div></div>
+      <div class="service-card reveal"><div class="service-icon">🧠</div><div class="service-name">치매·알츠하이머 케어</div><div class="service-desc">전문 교육을 받은 케어기버가 인지 케어와 행동 관리를 지원합니다.</div></div>
+      <div class="service-card reveal reveal-delay-1"><div class="service-icon">🏠</div><div class="service-name">가사 도우미</div><div class="service-desc">청소, 빨래, 장보기 등 일상 가사를 지원합니다.</div></div>
+      <div class="service-card reveal reveal-delay-2"><div class="service-icon">🌙</div><div class="service-name">24시간 상주 케어</div><div class="service-desc">중증 어르신을 위한 24시간 상주 또는 야간 케어 서비스입니다.</div></div>
+      <div class="service-card reveal reveal-delay-3"><div class="service-icon">🤸</div><div class="service-name">재활 보조</div><div class="service-desc">수술 후 회복, 물리치료 동행 및 이동 보조 서비스를 제공합니다.</div></div>
     </div>
   </div>
 </section>
+
+<section id="why">
+  <div class="container">
+    <div class="why-inner">
+      <div class="reveal">
+        <span class="section-label">왜 HanJobs인가</span>
+        <h2 class="section-title" style="color:white">한인 시니어 케어의<br><em style="color:#FDB462">새로운 기준</em>을 만듭니다</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.6)">일반 케어 플랫폼과 다릅니다. 한인 커뮤니티를 위해, 한인이 만든 플랫폼입니다.</p>
+        <div class="why-list">
+          <div class="why-item"><div class="why-icon">🇰🇷</div><div class="why-item-text"><h4>완전한 한국어 서비스</h4><p>케어기버 선발부터 서비스 진행, 고객 지원까지 모두 한국어로 진행합니다.</p></div></div>
+          <div class="why-item"><div class="why-icon">🔍</div><div class="why-item-text"><h4>3단계 신원 검증 시스템</h4><p>신원조회, 의료 자격증 확인, 레퍼런스 체크까지 철저히 검증된 케어기버만 등록됩니다.</p></div></div>
+          <div class="why-item"><div class="why-icon">🏥</div><div class="why-item-text"><h4>LA 차병원 의료 네트워크</h4><p>긴급 상황 시 LA 차병원 의료진과 즉시 연결, 보험 청구도 원스톱 지원합니다.</p></div></div>
+          <div class="why-item"><div class="why-icon">🤖</div><div class="why-item-text"><h4>닥터히어 AI 매칭 엔진</h4><p>어르신의 상태와 선호도를 분석해 최적의 케어기버를 자동으로 추천합니다.</p></div></div>
+          <div class="why-item"><div class="why-icon">💳</div><div class="why-item-text"><h4>보험·Medi-Cal 청구 지원</h4><p>메디케어, 메디칼, 민간보험 청구 서류 작성을 전문팀이 직접 도와드립니다.</p></div></div>
+        </div>
+      </div>
+      <div class="why-visual reveal reveal-delay-1">
+        <div class="why-vis-card"><div class="why-vis-num">98%</div><div class="why-vis-label">고객 만족도<br>재이용률</div></div>
+        <div class="why-vis-card"><div class="why-vis-num">48h</div><div class="why-vis-label">평균 매칭<br>완료 시간</div></div>
+        <div class="why-vis-card"><div class="why-vis-num">$0</div><div class="why-vis-label">매칭 수수료<br>가족 부담 없음</div></div>
+        <div class="why-vis-card"><div class="why-vis-num">24/7</div><div class="why-vis-label">한국어 고객<br>지원 운영</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="register">
+  <div class="container">
+    <div class="register-inner">
+      <div class="register-header reveal">
+        <span class="section-label">지금 시작하기</span>
+        <h2 class="section-title">오늘 바로 <em>등록하세요</em></h2>
+        <p class="section-sub" style="margin:0 auto">빠르고 간단하게 시작할 수 있습니다. 모든 과정은 한국어로 진행됩니다.</p>
+      </div>
+      <div class="register-tabs reveal">
+        <button class="register-tab active" id="tab-patient" onclick="switchRegisterTab('patient')">👴 케어 요청하기 (가족/환자)</button>
+        <button class="register-tab" id="tab-caregiver" onclick="switchRegisterTab('caregiver')">🩺 케어기버로 등록하기</button>
+      </div>
+      <div class="register-panel active" id="panel-patient">
+        <div class="register-form reveal">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">신청자 성함 <span>*</span></label><input class="form-input" type="text" placeholder="홍길동"></div>
+            <div class="form-group"><label class="form-label">연락처 <span>*</span></label><input class="form-input" type="tel" placeholder="(213) 000-0000"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">이메일</label><input class="form-input" type="email" placeholder="email@example.com"></div>
+            <div class="form-group"><label class="form-label">서비스 지역 <span>*</span></label><select class="form-select"><option value="">지역 선택</option><option>코리아타운 (LA)</option><option>토렌스</option><option>가디나</option><option>어바인</option><option>샌타모니카</option><option>풀러턴</option><option>기타</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">환자분 연령대</label><select class="form-select"><option value="">선택</option><option>65–74세</option><option>75–84세</option><option>85세 이상</option></select></div>
+            <div class="form-group"><label class="form-label">케어 시작 시기 <span>*</span></label><select class="form-select"><option value="">선택</option><option>즉시 (1주 이내)</option><option>2–4주 이내</option><option>1개월 이후</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">필요한 케어 유형 <span>*</span></label><select class="form-select"><option value="">선택</option><option>개인위생 도움</option><option>식사 준비</option><option>병원 동행</option><option>치매·알츠하이머 케어</option><option>24시간 상주 케어</option><option>종합 케어 (상담 후 결정)</option></select></div>
+            <div class="form-group"><label class="form-label">예상 주간 시간</label><select class="form-select"><option value="">선택</option><option>주 10시간 미만</option><option>주 10–20시간</option><option>주 20–40시간</option><option>24시간 상주</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full"><label class="form-label">특이사항 / 추가 요청</label><textarea class="form-textarea" placeholder="어르신의 건강 상태, 특별히 필요한 사항, 언어 선호도 등을 자유롭게 작성해 주세요."></textarea></div>
+          </div>
+          <div class="form-checkbox-row"><input type="checkbox" id="agree-patient"><label for="agree-patient">개인정보 수집 및 이용에 동의합니다. 수집된 정보는 케어기버 매칭 목적으로만 사용됩니다.</label></div>
+          <button class="btn btn-primary form-submit" onclick="submitForm('patient')">케어기버 매칭 요청하기 →</button>
+        </div>
+      </div>
+      <div class="register-panel" id="panel-caregiver">
+        <div class="register-form reveal">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">성함 <span>*</span></label><input class="form-input" type="text" placeholder="홍길동"></div>
+            <div class="form-group"><label class="form-label">연락처 <span>*</span></label><input class="form-input" type="tel" placeholder="(213) 000-0000"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">이메일 <span>*</span></label><input class="form-input" type="email" placeholder="email@example.com"></div>
+            <div class="form-group"><label class="form-label">활동 가능 지역 <span>*</span></label><select class="form-select"><option value="">지역 선택</option><option>코리아타운 (LA)</option><option>토렌스</option><option>가디나</option><option>어바인</option><option>샌타모니카</option><option>풀러턴</option><option>기타</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">케어기버 경력</label><select class="form-select"><option value="">선택</option><option>1년 미만</option><option>1–3년</option><option>3–7년</option><option>7년 이상</option></select></div>
+            <div class="form-group"><label class="form-label">희망 시급</label><select class="form-select"><option value="">선택</option><option>$18–$20/시간</option><option>$20–$25/시간</option><option>$25–$30/시간</option><option>$30 이상/시간</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full"><label class="form-label">보유 자격증 (해당 항목 모두 선택)</label>
+              <div class="certifications-grid">
+                <label class="cert-option"><input type="checkbox"> CNA (공인 간호보조사)</label>
+                <label class="cert-option"><input type="checkbox"> HHA (가정건강보조사)</label>
+                <label class="cert-option"><input type="checkbox"> RN (등록 간호사)</label>
+                <label class="cert-option"><input type="checkbox"> LVN (실무 간호사)</label>
+                <label class="cert-option"><input type="checkbox"> CPR/First Aid</label>
+                <label class="cert-option"><input type="checkbox"> 자격증 없음</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group full"><label class="form-label">자기소개 / 경력 요약</label><textarea class="form-textarea" placeholder="케어 경험, 특기, 언어 능력 등을 자유롭게 작성해 주세요."></textarea></div>
+          </div>
+          <div class="form-checkbox-row"><input type="checkbox" id="agree-cg"><label for="agree-cg">개인정보 수집 및 이용에 동의하며, 신원조회 및 자격증 검증 절차에 동의합니다.</label></div>
+          <button class="btn btn-accent form-submit" onclick="submitForm('caregiver')">케어기버 등록 신청하기 →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="container">
+    <div class="testimonials-header reveal">
+      <span class="section-label">실제 후기</span>
+      <h2 class="section-title">이용하신 분들의 <em>진심 어린 이야기</em></h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal"><div class="testi-quote">"</div><p class="testi-body">어머니가 치매 초기 판정을 받고 어떻게 해야 할지 막막했는데, HanJobs를 통해 치매 케어 전문 케어기버를 연결받았습니다. 한국어로 소통하니 어머니도 편안해하시고 가족도 안심이 됩니다. 차병원 의료진과 연계도 너무 도움이 됐어요.</p><div class="testi-author"><div class="testi-avatar" style="background:#1B6CA8">김</div><div><div class="testi-name">김정숙 님 가족</div><div class="testi-role">코리아타운 거주 · 치매 케어 이용 6개월</div></div></div></div>
+      <div class="testi-card reveal reveal-delay-1"><div class="testi-quote">"</div><p class="testi-body">처음엔 낯선 사람이 집에 오는 게 싫었는데, 케어기버 선생님이 한국 분이시라 처음부터 편했어요. 밥도 한식으로 해주시고, 병원도 같이 가주시니 자식한테 짐이 덜 되는 것 같아 오히려 좋네요. 고맙습니다.</p><div class="testi-author"><div class="testi-avatar" style="background:#2E7D52">박</div><div><div class="testi-name">박영식 어르신</div><div class="testi-role">토렌스 거주 · 방문 케어 이용 중</div></div></div></div>
+      <div class="testi-card reveal reveal-delay-2"><div class="testi-quote">"</div><p class="testi-body">케어기버로 등록한 지 3일 만에 첫 케이스가 매칭됐어요. 플랫폼이 한국어로 되어 있어서 사용하기 쉽고, 보험 청구도 도와줘서 미수금 걱정이 없네요. 안정적으로 일할 수 있어서 정말 만족합니다.</p><div class="testi-author"><div class="testi-avatar" style="background:#E07B3C">이</div><div><div class="testi-name">이미진 케어기버</div><div class="testi-role">CNA · 가디나 활동 · 등록 2개월</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="faq-inner">
+      <div class="faq-header reveal">
+        <span class="section-label">자주 묻는 질문</span>
+        <h2 class="section-title">궁금하신 점이 <em>있으신가요?</em></h2>
+      </div>
+      <div class="faq-list reveal">
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">케어기버 매칭 비용은 얼마인가요?<span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">가족/환자 측의 매칭 수수료는 무료입니다. 케어기버 시급은 $18–$35 수준이며, 케어기버의 경력, 자격증, 서비스 유형에 따라 달라집니다. 첫 상담 후 정확한 견적을 안내드립니다.</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">케어기버를 어떻게 검증하나요?<span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">모든 케어기버는 ① 신원조회 (범죄·성범죄 이력 전국 조회), ② 의료 자격증 진위 확인 (CNA, HHA, RN 등), ③ 이전 고용주 레퍼런스 체크의 3단계 검증 절차를 통과해야 합니다. 검증에 통과한 케어기버만 '인증 뱃지'를 받고 플랫폼에 등록됩니다.</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">메디케어/메디칼 보험도 적용되나요?<span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">네, 가능합니다. HanJobs는 LA 차병원(HPMC) 및 닥터히어 AI 청구 시스템과 연계하여 메디케어, 메디칼(Medi-Cal), 민간보험 청구를 지원합니다. 보험 적용 여부 및 본인 부담금은 상담 시 안내드립니다.</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">케어기버가 마음에 들지 않으면 바꿀 수 있나요?<span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">물론입니다. 매칭 후 2주 이내에는 언제든지 무료로 케어기버를 교체할 수 있습니다. 2주 이후에도 정당한 사유가 있으면 재매칭을 도와드립니다.</div></div></div>
+        <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">긴급 상황 시 어떻게 되나요?<span class="faq-chevron">▾</span></button><div class="faq-answer"><div class="faq-answer-inner">HanJobs는 24시간 한국어 긴급 대응 라인(213-804-2727)을 운영합니다. LA 차병원 응급 의료진과의 즉시 연결 체계를 갖추고 있습니다.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cta-banner">
+  <div class="container reveal">
+    <h2 class="cta-title">지금 바로 <em>첫 걸음</em>을 시작하세요</h2>
+    <p class="cta-sub">매칭 수수료 무료 · 한국어 상담 · 24시간 지원</p>
+    <div class="cta-btns">
+      <a href="#register" class="btn btn-primary" onclick="switchRegisterTab('patient')">케어기버 찾기 →</a>
+      <a href="#register" class="btn btn-outline" onclick="switchRegisterTab('caregiver')">케어기버 등록하기</a>
+      <a href="tel:+12138042727" class="btn" style="border:2px solid var(--border);color:var(--text2)">📞 213-804-2727</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-logo"><div class="footer-brand-icon">H</div><span class="footer-brand-name">HanJobs</span></div>
+        <p class="footer-desc">한인 시니어를 위한 검증된 케어기버 연결 플랫폼.<br>홈캐스트 USA · LA 차병원 공식 파트너.</p>
+        <div class="footer-contact">
+          <a href="tel:+12138042727">📞 (213) 804-2727</a>
+          <a href="mailto:thekollex@gmail.com">✉ thekollex@gmail.com</a>
+          <a href="https://open.kakao.com/o/chrisy118" target="_blank">💬 카카오톡 상담</a>
+          <a href="#">📍 Los Angeles, CA</a>
+        </div>
+      </div>
+      <div><div class="footer-col-title">서비스</div><div class="footer-links"><a href="#caregivers">케어기버 찾기</a><a href="#services">서비스 안내</a><a href="#register" onclick="switchRegisterTab('patient')">케어 요청하기</a><a href="#register" onclick="switchRegisterTab('caregiver')">케어기버 등록</a></div></div>
+      <div><div class="footer-col-title">회사</div><div class="footer-links"><a href="#">회사 소개</a><a href="#">파트너십</a><a href="#">홈캐스트 USA</a><a href="#">LA 차병원</a></div></div>
+      <div><div class="footer-col-title">지원</div><div class="footer-links"><a href="#faq">FAQ</a><a href="#">보험 안내</a><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 HanJobs. All rights reserved. | Homecast USA, Inc.</span>
+      <div class="footer-bottom-partners">
+        <span class="footer-partner-tag">홈캐스트 USA 공식 파트너</span>
+        <span class="footer-partner-tag">LA 차병원 제휴</span>
+        <span class="footer-partner-tag">CA MSO 인증</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CAREGIVER MODAL -->
+<div class="modal-overlay" id="cg-modal" onclick="closeCgModal(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div style="display:flex;gap:16px;align-items:flex-start">
+        <div class="modal-avatar" id="m-avatar"></div>
+        <div>
+          <div class="modal-name" id="m-name"></div>
+          <div class="modal-certs" id="m-certs"></div>
+          <div class="modal-meta" id="m-meta"></div>
+        </div>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('cg-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-rate-row">
+        <div><div style="font-size:.78rem;color:var(--text3);margin-bottom:4px">시간당 요금</div><div class="modal-rate-big" id="m-rate"></div></div>
+        <div style="text-align:right"><div style="font-size:.78rem;color:var(--text3);margin-bottom:4px">경력</div><div style="font-size:1.1rem;font-weight:700;color:var(--text)" id="m-exp"></div></div>
+      </div>
+      <div class="modal-section"><div class="modal-section-title">제공 서비스</div><div class="modal-services-list" id="m-services"></div></div>
+      <div class="modal-section"><div class="modal-section-title">언어</div><div id="m-langs" style="font-size:.9rem;color:var(--text2)"></div></div>
+      <div class="modal-section"><div class="modal-section-title">가능 요일</div><div class="modal-schedule-grid" id="m-schedule"></div></div>
+      <div class="modal-section"><div class="modal-section-title">자기소개</div><p id="m-bio" style="font-size:.9rem;color:var(--text2);line-height:1.8;font-weight:300"></p></div>
+      <div class="modal-action-btns">
+        <a href="tel:+12138042727" class="btn btn-primary">📞 전화 상담하기</a>
+        <a href="#register" class="btn btn-accent" onclick="document.getElementById('cg-modal').classList.remove('open');switchRegisterTab('patient')">매칭 요청하기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
 
 <script>
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+const caregivers=[
+  {id:1,name:'김미영',initials:'김',color:'#1B6CA8',cert:'CNA',region:'코리아타운',regionFull:'코리아타운 (LA)',rate:22,exp:'10년',rating:4.9,reviews:47,services:['개인위생','식사','약','병원'],servicesFull:['개인위생 도움','식사 준비','약 관리','병원 동행'],langs:'한국어, 영어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[true,true,true,true,true,false,false],bio:'10년 이상 한인 어르신을 전문적으로 돌봐온 공인 간호보조사(CNA)입니다. 어르신의 마음을 먼저 헤아리는 따뜻한 케어를 드립니다. 치매 초기 케어 경험이 풍부합니다.'},
+  {id:2,name:'박선영',initials:'박',color:'#2E7D52',cert:'HHA',region:'토렌스',regionFull:'토렌스',rate:20,exp:'7년',rating:4.8,reviews:31,services:['가사','식사','병원'],servicesFull:['가사 도우미','식사 준비','병원 동행','장보기'],langs:'한국어, 영어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[true,true,false,true,true,true,false],bio:'7년 경력의 가정건강보조사(HHA)로 토렌스 및 가디나 지역 어르신을 주로 담당합니다. 한식 조리에 능하며, 차량이 있어 병원 동행 서비스도 가능합니다.'},
+  {id:3,name:'이지현',initials:'이',color:'#7C3AED',cert:'CNA',region:'가디나',regionFull:'가디나',rate:21,exp:'5년',rating:4.9,reviews:28,services:['개인위생','치매'],servicesFull:['치매·알츠하이머 케어','개인위생 도움','재활 보조'],langs:'한국어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[false,true,true,true,true,true,false],bio:'치매·알츠하이머 케어 전문 교육을 수료한 CNA입니다. 인지 자극 활동과 행동 관리에 경험이 풍부합니다. 한국어만 가능하신 어르신과 특히 잘 맞습니다.'},
+  {id:4,name:'최은정',initials:'최',color:'#B45309',cert:'RN',region:'어바인',regionFull:'어바인',rate:35,exp:'15년',rating:5.0,reviews:62,services:['약','병원','개인위생'],servicesFull:['의료 케어','약 관리','상처 치료','병원 동행'],langs:'한국어, 영어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[true,true,true,false,true,false,false],bio:'15년 경력의 등록 간호사(RN)로 수술 후 회복 케어와 복합 질환 어르신 케어를 전문으로 합니다. 보험 청구 서류 지원도 가능합니다.'},
+  {id:5,name:'정수진',initials:'정',color:'#E07B3C',cert:'비의료',region:'샌타모니카',regionFull:'샌타모니카',rate:18,exp:'8년',rating:4.7,reviews:23,services:['가사','식사'],servicesFull:['가사 도우미','식사 준비','장보기','외출 동행'],langs:'한국어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[true,false,true,true,true,true,true],bio:'8년간 한인 가정에서 생활 도우미로 활동했습니다. 청소, 요리, 장보기 등 일상 가사 전반을 지원합니다. 어르신과의 대화를 통해 정서적 지지도 함께 드립니다.'},
+  {id:6,name:'한도희',initials:'한',color:'#0F766E',cert:'CNA',region:'풀러턴',regionFull:'풀러턴',rate:19,exp:'3년',rating:4.8,reviews:14,services:['개인위생','식사','병원'],servicesFull:['개인위생 도움','식사 준비','외출 동행','병원 동행'],langs:'한국어, 영어',schedule:['월','화','수','목','금','토','일'],scheduleAvail:[true,true,true,true,false,true,true],bio:'3년 경력의 CNA로 풀러턴 및 어바인 지역에서 활동 중입니다. 젊고 에너지 넘치는 케어기버로 어르신과 함께하는 시간을 소중히 여깁니다.'}
+];
 
+function renderCaregivers(list){
+  const grid=document.getElementById('cg-grid');
+  const empty=document.getElementById('cg-empty');
+  if(!list.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=list.map(cg=>`
+    <div class="cg-card" onclick="openCgModal(${cg.id})">
+      <div class="cg-card-top">
+        <div class="cg-avatar" style="background:${cg.color}">${cg.initials}${cg.available?'<div class="cg-avatar-avail"></div>':''}</div>
+        <div class="cg-info">
+          <div class="cg-name">${cg.name}</div>
+          <div class="cg-cert">${cg.cert}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+            <div class="cg-location">📍 ${cg.regionFull}</div>
+            <div class="cg-rating"><span class="cg-stars">★★★★★</span> ${cg.rating} (${cg.reviews})</div>
+          </div>
+        </div>
+      </div>
+      <div class="cg-card-mid"><div class="cg-services">${cg.servicesFull.map(s=>`<span class="cg-service-tag">${s}</span>`).join('')}</div></div>
+      <div class="cg-card-bot">
+        <div><div class="cg-rate">$${cg.rate}<span>/시간</span></div><div class="cg-exp">경력 ${cg.exp}</div></div>
+        <button class="cg-contact-btn">프로필 보기</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterCaregivers(){
+  const region=document.getElementById('filter-region').value;
+  const service=document.getElementById('filter-service').value;
+  const rate=document.getElementById('filter-rate').value;
+  const filtered=caregivers.filter(cg=>{
+    if(region&&cg.region!==region)return false;
+    if(service&&!cg.services.includes(service))return false;
+    if(rate==='20이하'&&cg.rate>20)return false;
+    if(rate==='20-25'&&(cg.rate<20||cg.rate>25))return false;
+    if(rate==='25이상'&&cg.rate<25)return false;
+    return true;
+  });
+  renderCaregivers(filtered);
+}
+
+function resetFilters(){
+  document.getElementById('filter-region').value='';
+  document.getElementById('filter-service').value='';
+  document.getElementById('filter-rate').value='';
+  renderCaregivers(caregivers);
+}
+
+function openCgModal(id){
+  const cg=caregivers.find(c=>c.id===id);
+  const av=document.getElementById('m-avatar');
+  av.style.background=cg.color;av.textContent=cg.initials;
+  document.getElementById('m-name').textContent=cg.name;
+  document.getElementById('m-certs').innerHTML=`<span class="badge badge-blue">${cg.cert}</span><span class="badge badge-green">인증 완료</span>`;
+  document.getElementById('m-meta').textContent=`📍 ${cg.regionFull}  ·  ⭐ ${cg.rating} (${cg.reviews}개 리뷰)`;
+  document.getElementById('m-rate').innerHTML=`$${cg.rate}<span>/시간</span>`;
+  document.getElementById('m-exp').textContent=`경력 ${cg.exp}`;
+  document.getElementById('m-services').innerHTML=cg.servicesFull.map(s=>`<span class="modal-service">${s}</span>`).join('');
+  document.getElementById('m-langs').textContent=cg.langs;
+  document.getElementById('m-schedule').innerHTML=cg.schedule.map((d,i)=>`<div class="day-pill ${cg.scheduleAvail[i]?'avail':'busy'}">${d}</div>`).join('');
+  document.getElementById('m-bio').textContent=cg.bio;
+  document.getElementById('cg-modal').classList.add('open');
+}
+
+function closeCgModal(e){if(e.target===document.getElementById('cg-modal'))document.getElementById('cg-modal').classList.remove('open');}
+
+function switchHowTab(tab,btn){
+  document.querySelectorAll('.how-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.how-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('how-'+tab).classList.add('active');
+}
+
+function switchRegisterTab(tab){
+  document.querySelectorAll('.register-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.register-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('active');
+}
+
+function submitForm(type){
+  const t=document.getElementById('toast');
+  t.textContent=type==='patient'?'✅ 케어기버 매칭 요청이 접수되었습니다. 48시간 내 연락드리겠습니다!':'✅ 케어기버 등록 신청이 완료되었습니다. 2~3일 내 검토 결과를 알려드립니다!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
+function toggleFaq(btn){
+  const ans=btn.nextElementSibling;
+  const isOpen=btn.classList.contains('open');
+  document.querySelectorAll('.faq-question.open').forEach(q=>{q.classList.remove('open');q.nextElementSibling.style.maxHeight='0';});
+  if(!isOpen){btn.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+}
+
+function toggleMobileMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+function closeMobileMenu(){document.getElementById('mobile-menu').classList.remove('open');}
+
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>10);});
+
+const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+renderCaregivers(caregivers);
+</script>
 </body>
 </html>
